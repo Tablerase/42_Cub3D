@@ -91,7 +91,15 @@ It is a special number that can be calculated from the elements of a square matr
 
 As a formula (remember the vertical bars `||` mean "determinant of")
 
-$$A =\begin{vmatrix}a & b \\c & d\end{vmatrix}=ad - bc$$
+$$
+A =
+\begin{vmatrix}
+a & b \\
+c & d
+\end{vmatrix}
+=
+ad - bc
+$$
 
 $$
 B =
