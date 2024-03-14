@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:25:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/13 17:27:37 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/14 11:15:26 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,16 @@
 // # define INFINITY 1e30 (present in math.h)
 
 /* ############################## STRUCTURES ############################### */
+
+typedef struct s_keys
+{
+	int	key_w;
+	int	key_a;
+	int	key_s;
+	int	key_d;
+	int	key_left;
+	int	key_right;
+}	t_keys;
 
 /**
  * @brief Struct for the mlx
@@ -203,6 +213,7 @@ typedef struct s_game
 	int			mouse_y;
 	t_map		map;
 	t_player	player;
+	t_keys		keys;
 }	t_game;
 
 /* ############################## PROTOTYPES ############################### */
