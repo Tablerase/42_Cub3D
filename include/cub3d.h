@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:25:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/14 14:56:50 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/14 18:36:12 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,8 @@ typedef struct s_img
 */
 typedef struct s_player
 {
-	int		pos_x;
-	int		pos_y;
+	double	pos_x;
+	double	pos_y;
 	double	dir_x;
 	double	dir_y;
 	int		fov;
@@ -140,9 +140,10 @@ typedef struct s_player
 */
 enum e_tile
 {
-	EMPTY,
+	GROUND,
 	WALL,
-	DOOR
+	DOOR,
+	EMPTY
 };
 
 /**
@@ -243,6 +244,19 @@ bool	ft_setup_player(t_game *game);
 bool	ft_setup(t_game *game);
 
 // Graphics
+
+// Raycasting
+
+void	raycasting(t_game *game);
+void	calculate_perp_wall_dist(t_ray *ray);
+void	calculate_line_params(t_ray *ray);
+void	find_wall_color(t_game *game, t_ray *ray);
+
+// Movement
+
+void	update_movement(t_game *game);
+void	rotate_left(t_game *game);
+void	rotate_right(t_game *game);
 
 // Pixel
 

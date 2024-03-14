@@ -6,7 +6,7 @@
 #    By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 18:08:42 by rcutte            #+#    #+#              #
-#    Updated: 2024/03/13 12:52:50 by rcutte           ###   ########.fr        #
+#    Updated: 2024/03/14 19:08:11 by rcutte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,14 +108,20 @@ SRC_PATH = ./src/mandatory
 # files
 SRC = main.c \
 		$(UTILS) \
-		$(MAP) \
+		$(DATA) \
 		$(EVENTS) \
+		$(RAYCASTING) \
 		$(GRAPHICS) \
 
 UTILS = utils/mem_free.c \
 
-MAP = map/map.c \
-		map/player_init.c \
+DATA = data/map.c \
+		data/player_init.c \
+
+RAYCASTING = raycasting/raycasting.c \
+		raycasting/raycasting_draw.c \
+		raycasting/raycasting_movements.c \
+		raycasting/raycasting_rotations.c \
 
 GRAPHICS = graphics/graphics_server.c \
 		graphics/colors.c \

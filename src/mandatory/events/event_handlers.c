@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 17:05:05 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/14 14:46:28 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/14 19:18:07 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ int	on_release(int keycode, t_game *game)
 	if (keycode == XK_d)
 		game->keys.key_d = RELEASED;
 	if (keycode == XK_Left)
-		game->keys.key_left = RELEASED;;
+		game->keys.key_left = RELEASED;
 	if (keycode == XK_Right)
-		game->keys.key_right = RELEASED;;
+		game->keys.key_right = RELEASED;
 	return (1);
 }
 
@@ -78,12 +78,12 @@ int	on_release(int keycode, t_game *game)
  * @param game The game struct
  * @note mlx_mouse_get_pos - Get the position of the mouse
 */
-int mouse_pos(int mouse_x, int mouse_y, t_game *game)
+int	mouse_pos(int mouse_x, int mouse_y, t_game *game)
 {
-  mlx_mouse_get_pos(game->mlx.mlx, game->mlx.win, &mouse_x, &mouse_y);
-  game->mouse_x = mouse_x;
-  game->mouse_y = mouse_y;
-  return (0);
+	mlx_mouse_get_pos(game->mlx.mlx, game->mlx.win, &mouse_x, &mouse_y);
+	game->mouse_x = mouse_x;
+	game->mouse_y = mouse_y;
+	return (0);
 }
 
 /**
@@ -94,8 +94,6 @@ int mouse_pos(int mouse_x, int mouse_y, t_game *game)
 */
 void	ft_events(t_game *game)
 {
-	// mlx_key_hook(game->mlx.win, key_hook, game);
-	// faire les mouvements selon les boutons enfonces dans mlx_loop_hook
 	mlx_hook(game->mlx.win, KeyPress, KeyPressMask, &on_click, game);
 	mlx_hook(game->mlx.win, KeyRelease, KeyReleaseMask, &on_release, game);
 	mlx_hook(game->mlx.win, DestroyNotify, NoEventMask, ft_exit, game);

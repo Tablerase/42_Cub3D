@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 12:51:35 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/13 14:06:55 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/14 15:53:55 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ bool	ft_setup_player(t_game *game)
 	game->player.plane_y = 0.66;
 	game->player.fov = 66;
 	game->player.move_speed = 0.05;
-	game->player.rot_speed = 0.05;
+	game->player.rot_speed = 0.02;
 	return (true);
 }

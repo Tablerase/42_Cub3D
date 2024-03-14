@@ -6,11 +6,11 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 13:20:09 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/12 13:41:35 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/14 16:46:50 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../../include/cub3d.h"
 
 /**
  * @brief Put a pixel to the image

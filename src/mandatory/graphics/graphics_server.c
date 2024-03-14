@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 17:27:58 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/12 13:39:17 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/14 16:29:49 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ static void	ft_init_game(t_game *game)
 	game->img.endian = 0;
 	game->mouse_x = 0;
 	game->mouse_y = 0;
+	game->keys.key_w = RELEASED;
+	game->keys.key_a = RELEASED;
+	game->keys.key_s = RELEASED;
+	game->keys.key_d = RELEASED;
+	game->keys.key_left = RELEASED;
+	game->keys.key_right = RELEASED;
 }
 
 static bool	ft_setup_img(t_game *game)
