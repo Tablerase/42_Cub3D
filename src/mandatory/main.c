@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:13:02 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/13 17:24:32 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/14 15:06:12 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,13 +110,12 @@ void	dda_algorithm(t_game *game, t_ray *ray)
 
 /**
  * @brief Calculation of the perpendicular wall distance
- * @param game The game struct
  * @param ray The ray struct
  * @note This function will be used to calculate the perpendicular wall distance
  * @note The perpendicular wall distance is calculated based on the side of the wall
  * that was hit and the side_dist and delta_dist values
 */
-void	calculate_perp_wall_dist(t_game *game, t_ray *ray)
+void	calculate_perp_wall_dist(t_ray *ray)
 {
 	if (ray->side == EW)
 		ray->perp_wall_dist = ray->side_dist_x - ray->delta_dist_x;
@@ -126,7 +125,6 @@ void	calculate_perp_wall_dist(t_game *game, t_ray *ray)
 
 /**
  * @brief Calculation of the line parameters
- * @param game The game struct
  * @param ray The ray struct
  * @note This function will be used to calculate the line parameters
  * @note The line height is calculated based on the perpendicular wall distance
@@ -135,7 +133,7 @@ void	calculate_perp_wall_dist(t_game *game, t_ray *ray)
  * and the height of the screen and are protected against out of bounds
  * @note The line is centered on the screen
 */
-void	calculate_line_params(t_game *game, t_ray *ray)
+void	calculate_line_params(t_ray *ray)
 {
 	ray->line_height = (int)(HEIGHT / ray->perp_wall_dist);
 	ray->draw_start = -ray->line_height / 2 + HEIGHT / 2;
@@ -178,8 +176,8 @@ void	find_wall_color(t_game *game, t_ray *ray)
 	{
 		ray->color = create_argb(0, 255, 0, 0);
 	}
-	if (ray->side == EW)
-		ray->color = ray->color / 2;
+	// if (ray->side == EW)
+	// 	ray->color = ray->color / 2;
 }
 
 /**
@@ -198,14 +196,98 @@ void	raycasting(t_game *game)
 		init_ray(game, &ray, x);
 		init_side_dist_and_step(game, &ray);
 		dda_algorithm(game, &ray);
-		calculate_perp_wall_dist(game, &ray);
-		calculate_line_params(game, &ray);
+		calculate_perp_wall_dist(&ray);
+		calculate_line_params(&ray);
 		find_wall_color(game, &ray);
 		draw_vertical_line(
 			&game->img, (t_point){x, ray.draw_start},
 			(t_point){x, ray.draw_end}, ray.color);
 		x++;
 	}
+}
+
+void	update_movement(t_game *game)
+{
+	if (game->keys.key_w == PRESSED)
+	{
+		if (game->map.map[(int)(game->player.pos_y + game->player.dir_y
+				* game->player.move_speed)][(int)game->player.pos_x] == 0)
+			game->player.pos_y += game->player.dir_y * game->player.move_speed;
+		if (game->map.map[(int)game->player.pos_y][(int)(game->player.pos_x
+				+ game->player.dir_x * game->player.move_speed)] == 0)
+			game->player.pos_x += game->player.dir_x * game->player.move_speed;
+	}
+	if (game->keys.key_s == PRESSED)
+	{
+		if (game->map.map[(int)(game->player.pos_y - game->player.dir_y
+				* game->player.move_speed)][(int)game->player.pos_x] == 0)
+			game->player.pos_y -= game->player.dir_y * game->player.move_speed;
+		if (game->map.map[(int)game->player.pos_y][(int)(game->player.pos_x
+				- game->player.dir_x * game->player.move_speed)] == 0)
+			game->player.pos_x -= game->player.dir_x * game->player.move_speed;
+	}
+	if (game->keys.key_d == PRESSED)
+	{
+		if (game->map.map[(int)(game->player.pos_y + game->player.dir_x
+				* game->player.move_speed)][(int)game->player.pos_x] == 0)
+			game->player.pos_y += game->player.dir_x * game->player.move_speed;
+		if (game->map.map[(int)game->player.pos_y][(int)(game->player.pos_x
+				- game->player.dir_y * game->player.move_speed)] == 0)
+			game->player.pos_x -= game->player.dir_y * game->player.move_speed;
+	}
+	if (game->keys.key_a == PRESSED)
+	{
+		if (game->map.map[(int)(game->player.pos_y - game->player.dir_x
+				* game->player.move_speed)][(int)game->player.pos_x] == 0)
+			game->player.pos_y -= game->player.dir_x * game->player.move_speed;
+		if (game->map.map[(int)game->player.pos_y][(int)(game->player.pos_x
+				+ game->player.dir_y * game->player.move_speed)] == 0)
+			game->player.pos_x += game->player.dir_y * game->player.move_speed;
+	}
+	if (game->keys.key_left == PRESSED)
+	{
+		double	old_dir_x;
+		double	old_plane_x;
+
+		old_dir_x = game->player.dir_x;
+		game->player.dir_x = game->player.dir_x * cos(game->player.rot_speed)
+			- game->player.dir_y * sin(game->player.rot_speed);
+		game->player.dir_y = old_dir_x * sin(game->player.rot_speed)
+			+ game->player.dir_y * cos(game->player.rot_speed);
+		old_plane_x = game->player.plane_x;
+		game->player.plane_x = game->player.plane_x * cos(game->player.rot_speed)
+			- game->player.plane_y * sin(game->player.rot_speed);
+		game->player.plane_y = old_plane_x * sin(game->player.rot_speed)
+			+ game->player.plane_y * cos(game->player.rot_speed);
+	}
+	if (game->keys.key_right == PRESSED)
+	{
+		double	old_dir_x;
+		double	old_plane_x;
+
+		old_dir_x = game->player.dir_x;
+		game->player.dir_x = game->player.dir_x * cos(-game->player.rot_speed)
+			- game->player.dir_y * sin(-game->player.rot_speed);
+		game->player.dir_y = old_dir_x * sin(-game->player.rot_speed)
+			+ game->player.dir_y * cos(-game->player.rot_speed);
+		old_plane_x = game->player.plane_x;
+		game->player.plane_x = game->player.plane_x * cos(-game->player.rot_speed)
+			- game->player.plane_y * sin(-game->player.rot_speed);
+		game->player.plane_y = old_plane_x * sin(-game->player.rot_speed)
+			+ game->player.plane_y * cos(-game->player.rot_speed);
+	}
+}
+
+/**
+ * @brief Function to handle the game play
+ * @param game The game struct
+ * @note This function will be used to handle the game play
+ * (movement, raycasting, etc)
+*/
+void	ft_gameplay(t_game *game)
+{
+	update_movement(game);
+	raycasting(game);
 }
 
 int	main(void)
@@ -219,6 +301,8 @@ int	main(void)
 	if (ft_setup(&game) == false)
 		return (EXIT_FAILURE);
 	ft_events(&game);
+	ft_gameplay(&game);
+	mlx_put_image_to_window(game.mlx.mlx, game.mlx.win, game.img.img, 0, 0);
 	mlx_loop(game.mlx.mlx);
 	ft_exit(&game);
 	return (0);

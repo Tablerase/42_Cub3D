@@ -6,11 +6,11 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:50:17 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/10 18:48:53 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/14 11:10:21 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../../include/cub3d.h"
 
 void	rectangle(t_img *img, t_point start, t_point end, int color)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:25:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/14 11:15:26 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:56:50 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@
 # include "color.h"
 // Libft
 # include "../libft/Includes/libft.h"
-// Shapes
-# include "shapes.h"
 
 /* ################################ DEFINES ################################ */
 
@@ -53,14 +51,34 @@
 
 /* ############################## STRUCTURES ############################### */
 
+/**
+ * @brief Enum for the keys
+ * @param RELEASED The released key
+ * @param PRESSED The pressed key
+*/
+enum e_key
+{
+	RELEASED,
+	PRESSED
+};
+
+/**
+ * @brief Struct for the keys
+ * @param key_w The W key
+ * @param key_a The A key
+ * @param key_s The S key
+ * @param key_d The D key
+ * @param key_left The left arrow key
+ * @param key_right The right arrow key
+*/
 typedef struct s_keys
 {
-	int	key_w;
-	int	key_a;
-	int	key_s;
-	int	key_d;
-	int	key_left;
-	int	key_right;
+	enum e_key	key_w;
+	enum e_key	key_a;
+	enum e_key	key_s;
+	enum e_key	key_d;
+	enum e_key	key_left;
+	enum e_key	key_right;
 }	t_keys;
 
 /**
@@ -209,10 +227,10 @@ typedef struct s_game
 {
 	t_mlx		mlx;
 	t_img		img;
-	int			mouse_x;
-	int			mouse_y;
 	t_map		map;
 	t_player	player;
+	int			mouse_x;
+	int			mouse_y;
 	t_keys		keys;
 }	t_game;
 
@@ -245,5 +263,10 @@ void	ft_events(t_game *game);
 // Exit
 
 int		ft_exit(t_game *game);
+
+/* ########################## PROJECT INCLUDES ############################# */
+
+// Shapes
+# include "shapes.h"
 
 #endif

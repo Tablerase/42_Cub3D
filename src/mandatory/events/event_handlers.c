@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_handlers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 17:05:05 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/14 11:26:23 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:46:28 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,17 @@ void	init_keys(t_game *game)
 int	on_click(int keycode, t_game *game)
 {
 	if (keycode == XK_a)
-		game->keys.key_a = 1;
+		game->keys.key_a = PRESSED;
 	if (keycode == XK_s)
-		game->keys.key_s = 1;
+		game->keys.key_s = PRESSED;
 	if (keycode == XK_w)
-		game->keys.key_w = 1;
+		game->keys.key_w = PRESSED;
 	if (keycode == XK_d)
-		game->keys.key_d = 1;
+		game->keys.key_d = PRESSED;
 	if (keycode == XK_Left)
-		game->keys.key_left = 1;
+		game->keys.key_left = PRESSED;
 	if (keycode == XK_Right)
-		game->keys.key_right = 1;
+		game->keys.key_right = PRESSED;
 	if (keycode == XK_Escape)
 		ft_exit(game);
 	return (1);
@@ -57,17 +57,17 @@ int	on_click(int keycode, t_game *game)
 int	on_release(int keycode, t_game *game)
 {
 	if (keycode == XK_a)
-		game->keys.key_a = 0;
+		game->keys.key_a = RELEASED;
 	if (keycode == XK_s)
-		game->keys.key_s = 0;
+		game->keys.key_s = RELEASED;
 	if (keycode == XK_w)
-		game->keys.key_w = 0;
+		game->keys.key_w = RELEASED;
 	if (keycode == XK_d)
-		game->keys.key_d = 0;
+		game->keys.key_d = RELEASED;
 	if (keycode == XK_Left)
-		game->keys.key_left = 0;
+		game->keys.key_left = RELEASED;;
 	if (keycode == XK_Right)
-		game->keys.key_right = 0;
+		game->keys.key_right = RELEASED;;
 	return (1);
 }
 
@@ -90,6 +90,7 @@ int mouse_pos(int mouse_x, int mouse_y, t_game *game)
  * @brief Function to handle the events
  * @param game The game struct
  * @note DestroyNotify - The window has been destroyed
+ * @note MotionNotify - The mouse has been moved
 */
 void	ft_events(t_game *game)
 {
