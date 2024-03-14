@@ -7,6 +7,12 @@
 *.obj
 *.elf
 
+# Binary
+cub3D
+
+# Mlx
+mlx
+
 # Linker output
 *.ilk
 *.map
