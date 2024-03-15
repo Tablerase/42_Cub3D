@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:42:01 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/14 19:16:15 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/15 20:14:37 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * @param ray The ray struct
  * @param x The x position
  * @note This function will be used to initialize the ray
- * @note The division are protected against division by zero
+ * @note The division are protected against division by zero (0.0000001)
  * @note The camera_x is calculated based on the x position according to the
  * width of the screen
  * @note The ray_dir_x and ray_dir_y are calculated based on the direction of
@@ -38,6 +38,9 @@ static void	init_ray(t_game *game, t_ray *ray, int x)
 	ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
 	ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
 	ray->hit = false;
+	ray->wall_x = 0;
+	ray->tex_x = 0;
+	ray->tex_y = 0;
 }
 
 /**
@@ -98,13 +101,13 @@ static void	dda_algorithm(t_game *game, t_ray *ray)
 		{
 			ray->side_dist_x += ray->delta_dist_x;
 			ray->map_x += ray->step_x;
-			ray->side = EW;
+			ray->side = NS;
 		}
 		else
 		{
 			ray->side_dist_y += ray->delta_dist_y;
 			ray->map_y += ray->step_y;
-			ray->side = NS;
+			ray->side = EW;
 		}
 		if (game->map.map[ray->map_y][ray->map_x] == WALL)
 			ray->hit = true;
@@ -129,10 +132,14 @@ void	raycasting(t_game *game)
 		dda_algorithm(game, &ray);
 		calculate_perp_wall_dist(&ray);
 		calculate_line_params(&ray);
-		find_wall_color(game, &ray);
-		draw_vertical_line(
-			&game->img, (t_point){x, ray.draw_start},
-			(t_point){x, ray.draw_end}, ray.color);
+		// ! Simple wall color
+		// find_wall_color(game, &ray);
+		// draw_vertical_line(
+		// 	&game->img, (t_point){x, ray.draw_start},
+		// 	(t_point){x, ray.draw_end}, ray.color);
+		find_wall_texture(game, &ray);
+
+		// Floor and ceiling
 		draw_vertical_line(
 			&game->img, (t_point){x, 0},
 			(t_point){x, ray.draw_start}, create_argb(0, 135, 206, 235));

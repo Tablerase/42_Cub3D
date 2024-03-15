@@ -6,7 +6,7 @@
 #    By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 18:08:42 by rcutte            #+#    #+#              #
-#    Updated: 2024/03/14 19:08:11 by rcutte           ###   ########.fr        #
+#    Updated: 2024/03/15 18:18:43 by rcutte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -119,7 +119,8 @@ DATA = data/map.c \
 		data/player_init.c \
 
 RAYCASTING = raycasting/raycasting.c \
-		raycasting/raycasting_draw.c \
+		raycasting/raycasting_params.c \
+		raycasting/raycasting_textures.c \
 		raycasting/raycasting_movements.c \
 		raycasting/raycasting_rotations.c \
 
