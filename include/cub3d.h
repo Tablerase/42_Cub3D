@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:25:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/14 18:36:12 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/15 15:06:32 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@
 # include "color.h"
 // Libft
 # include "../libft/Includes/libft.h"
+// Shapes
+# include "shapes.h"
 
 /* ################################ DEFINES ################################ */
 
@@ -220,6 +222,57 @@ typedef struct s_ray
 }	t_ray;
 
 /**
+ * @brief Enum for the textures
+ * @param NORTH The north texture
+ * @param SOUTH The south texture
+ * @param EAST The east texture
+ * @param WEST The west texture
+*/
+enum e_texture
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST
+};
+
+/**
+ * @brief Struct for the texture
+ * @param type The type of the texture
+ * @param path The path to the texture
+ * @param img The img struct
+ * @param width The width of the texture
+ * @param height The height of the texture
+*/
+typedef struct s_texture
+{
+	enum e_texture	type;
+	char			*path;
+	t_img			img;
+	int				width;
+	int				height;
+}	t_texture;
+
+/**
+ * @brief Struct for the textures
+ * @param north The north texture
+ * @param south The south texture
+ * @param east The east texture
+ * @param west The west texture
+ * @param floor_color The floor color
+ * @param ceiling_color The ceiling color
+*/
+typedef struct s_textures
+{
+	t_texture	north;
+	t_texture	south;
+	t_texture	east;
+	t_texture	west;
+	int			floor_color;
+	int			ceiling_color;
+}	t_textures;
+
+/**
  * @brief Struct for the game
  * @param mlx The mlx struct
  * @param img The img struct
@@ -228,11 +281,12 @@ typedef struct s_game
 {
 	t_mlx		mlx;
 	t_img		img;
+	t_keys		keys;
 	t_map		map;
 	t_player	player;
+	t_textures	textures;
 	int			mouse_x;
 	int			mouse_y;
-	t_keys		keys;
 }	t_game;
 
 /* ############################## PROTOTYPES ############################### */
@@ -278,9 +332,17 @@ void	ft_events(t_game *game);
 
 int		ft_exit(t_game *game);
 
-/* ########################## PROJECT INCLUDES ############################# */
+/* ################################ SHAPES ################################# */
 
-// Shapes
-# include "shapes.h"
+// Line
+
+void	draw_horizontal_line(t_img *img, t_point p1, t_point p2, int color);
+void	draw_vertical_line(t_img *img, t_point p1, t_point p2, int color);
+void	line(t_img *img, t_point p1, t_point p2, int color);
+
+// Rectangle
+
+void	rectangle(t_img *img, t_point start, t_point end, int color);
+void	fill_rectangle(t_img *img, t_point start, t_point end, int color);
 
 #endif

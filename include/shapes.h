@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:42:33 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/14 14:48:30 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/15 15:05:22 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,5 @@ typedef struct s_line
 	int	px;
 	int	py;
 }	t_line;
-
-/* ############################## PROTOTYPES ############################### */
-
-// Line
-
-void	draw_horizontal_line(t_img *img, t_point p1, t_point p2, int color);
-void	draw_vertical_line(t_img *img, t_point p1, t_point p2, int color);
-void	line(t_img *img, t_point p1, t_point p2, int color);
-
-// Rectangle
-
-void	rectangle(t_img *img, t_point start, t_point end, int color);
-void	fill_rectangle(t_img *img, t_point start, t_point end, int color);
 
 #endif
