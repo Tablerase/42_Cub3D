@@ -6,7 +6,7 @@
 #    By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 18:08:42 by rcutte            #+#    #+#              #
-#    Updated: 2024/03/15 18:18:43 by rcutte           ###   ########.fr        #
+#    Updated: 2024/03/18 12:59:15 by rcutte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -116,6 +116,7 @@ SRC = main.c \
 UTILS = utils/mem_free.c \
 
 DATA = data/map.c \
+		data/textures.c \
 		data/player_init.c \
 
 RAYCASTING = raycasting/raycasting.c \

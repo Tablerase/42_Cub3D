@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:16:39 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/15 18:52:33 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/18 12:55:50 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	ft_setup_map(t_game *game)
 	{
 		map[i] = malloc(MAP_WIDTH * sizeof(enum e_tile));
 		if (map[i] == NULL) 
-			return false; // return false if memory allocation failed
+			return (free(map), false); // return false if memory allocation failed
 		i++;
 	}
 	enum e_tile temp_map[MAP_HEIGHT][MAP_WIDTH] = {

@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:25:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/15 20:13:25 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/18 15:20:57 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -307,6 +307,7 @@ typedef struct s_game
 
 // Setup
 
+bool	ft_setup_textures(t_game *game);
 bool	ft_setup_map(t_game *game);
 bool	ft_setup_player(t_game *game);
 bool	ft_setup(t_game *game);

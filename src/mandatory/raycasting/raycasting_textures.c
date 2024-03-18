@@ -6,12 +6,17 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 17:49:34 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/15 20:33:40 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/18 12:52:55 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3d.h"
 
+/**
+ * @brief Find the texture of the wall
+ * @param game The game struct
+ * @param ray The ray struct
+*/
 void	find_tile_texture(t_game *game, t_ray *ray)
 {
 	t_texture	*texture;
@@ -25,14 +30,22 @@ void	find_tile_texture(t_game *game, t_ray *ray)
 	else
 		texture = &game->textures.west;
 	ray->tex_x = (int)(ray->wall_x * (double)texture->width);
+	printf("ray->tex_x: %d\n", ray->tex_x);
 	if (ray->side == NS && ray->ray_dir_y > 0)
+	{
 		ray->tex_x = texture->width - ray->tex_x - 1;
+		printf("Cond NS ray->tex_x: %d\n", ray->tex_x);
+	}
 	if (ray->side == EW && ray->ray_dir_x < 0)
+	{
 		ray->tex_x = texture->width - ray->tex_x - 1;
+		printf("Cond EW ray->tex_x: %d\n", ray->tex_x);
+	}
 }
 
 /**
- * @brief Find the side of the wall
+ * @brief Find the side of the wall and get the x coord according to
+ * the side of the wall hit
  * @param game The game struct
  * @param ray The ray struct
  * @note This function will be used to find the side of the wall
@@ -44,7 +57,7 @@ void	find_tile_texture(t_game *game, t_ray *ray)
  * and then we Subtract it from wall_x to get the decimal part. This decimal
  * part is the x coord of in the tile side that was hit.
 */
-void	find_tile_side(t_game *game, t_ray *ray)
+void	find_tile_side_x(t_game *game, t_ray *ray)
 {
 	if (ray->side == NS)
 	{
@@ -76,6 +89,6 @@ void	find_tile_side(t_game *game, t_ray *ray)
 void	find_wall_texture(t_game *game, t_ray *ray)
 {
 	ray->tile = game->map.map[ray->map_y][ray->map_x];
-	find_tile_side(game, ray);
+	find_tile_side_x(game, ray);
 	find_tile_texture(game, ray);
 }

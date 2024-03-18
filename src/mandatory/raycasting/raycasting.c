@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:42:01 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/15 20:14:37 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/18 15:23:23 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,10 +142,10 @@ void	raycasting(t_game *game)
 		// Floor and ceiling
 		draw_vertical_line(
 			&game->img, (t_point){x, 0},
-			(t_point){x, ray.draw_start}, create_argb(0, 135, 206, 235));
+			(t_point){x, ray.draw_start}, game->textures.ceiling_color);
 		draw_vertical_line(
 			&game->img, (t_point){x, ray.draw_end},
-			(t_point){x, HEIGHT}, create_argb(0, 0, 0, 0));
+			(t_point){x, HEIGHT}, game->textures.floor_color);
 		x++;
 	}
 }

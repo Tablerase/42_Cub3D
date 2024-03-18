@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:13:02 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/14 19:08:25 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/18 12:58:44 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	main(void)
 	if (ft_setup_player(&game) == false)
 		return (EXIT_FAILURE);
 	if (ft_setup_map(&game) == false)
+		return (EXIT_FAILURE);
+	if (ft_setup_textures(&game) == false)
 		return (EXIT_FAILURE);
 	if (ft_setup(&game) == false)
 		return (EXIT_FAILURE);
