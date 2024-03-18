@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+         #
+#    By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 18:08:42 by rcutte            #+#    #+#              #
-#    Updated: 2024/03/18 16:12:33 by rcutte           ###   ########.fr        #
+#    Updated: 2024/03/18 16:26:51 by abourgeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,7 +122,6 @@ DATA = data/map.c \
 		data/player_init.c \
 
 RAYCASTING = raycasting/raycasting.c \
-		raycasting/raycasting_draw.c \
 		raycasting/raycasting_params.c \
 		raycasting/raycasting_textures.c \
 		raycasting/raycasting_movements.c \

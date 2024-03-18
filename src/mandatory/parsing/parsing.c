@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:32:22 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/18 15:30:07 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/18 16:26:34 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,34 +52,34 @@ void	parsing(t_game *game, char *filename)
 	return ;
 }
 
-int	main(int argc, char **argv)
-{
-	t_game	game;
+// int	main(int argc, char **argv)
+// {
+// 	t_game	game;
 
-	if (argc != 2)
-		parsing_exit_error(NULL);
-	parsing_init(&game);
-	parsing(&game, argv[1]);
-	game.mlx.win = mlx_new_window(game.mlx.mlx, WIDTH, HEIGHT, "cub3d");
-	if (game.mlx.win == NULL)
-		parsing_exit_error(&game);
-	mlx_put_image_to_window(game.mlx.mlx, game.mlx.win,
-		game.textures.north.img.img, 0, 0);
-	mlx_put_image_to_window(game.mlx.mlx, game.mlx.win,
-		game.textures.south.img.img, WIDTH / 2, 0);
-	mlx_put_image_to_window(game.mlx.mlx, game.mlx.win,
-		game.textures.west.img.img, 0, HEIGHT / 2);
-	mlx_put_image_to_window(game.mlx.mlx, game.mlx.win,
-		game.textures.east.img.img, WIDTH / 2, HEIGHT / 2);
-	mlx_pixel_put(game.mlx.mlx, game.mlx.win, WIDTH / 4, HEIGHT / 2,
-		game.textures.ceiling_color);
-	mlx_pixel_put(game.mlx.mlx, game.mlx.win, WIDTH / 4, HEIGHT / 4,
-		game.textures.floor_color);
-	mlx_hook(game.mlx.win, 17, 0, &parsing_clean_end, &game);
-	mlx_loop(game.mlx.mlx);
-	parsing_free(&game);
-	return (0);
-}
+// 	if (argc != 2)
+// 		parsing_exit_error(NULL);
+// 	parsing_init(&game);
+// 	parsing(&game, argv[1]);
+// 	game.mlx.win = mlx_new_window(game.mlx.mlx, WIDTH, HEIGHT, "cub3d");
+// 	if (game.mlx.win == NULL)
+// 		parsing_exit_error(&game);
+// 	mlx_put_image_to_window(game.mlx.mlx, game.mlx.win,
+// 		game.textures.north.img.img, 0, 0);
+// 	mlx_put_image_to_window(game.mlx.mlx, game.mlx.win,
+// 		game.textures.south.img.img, WIDTH / 2, 0);
+// 	mlx_put_image_to_window(game.mlx.mlx, game.mlx.win,
+// 		game.textures.west.img.img, 0, HEIGHT / 2);
+// 	mlx_put_image_to_window(game.mlx.mlx, game.mlx.win,
+// 		game.textures.east.img.img, WIDTH / 2, HEIGHT / 2);
+// 	mlx_pixel_put(game.mlx.mlx, game.mlx.win, WIDTH / 4, HEIGHT / 2,
+// 		game.textures.ceiling_color);
+// 	mlx_pixel_put(game.mlx.mlx, game.mlx.win, WIDTH / 4, HEIGHT / 4,
+// 		game.textures.floor_color);
+// 	mlx_hook(game.mlx.win, 17, 0, &parsing_clean_end, &game);
+// 	mlx_loop(game.mlx.mlx);
+// 	parsing_free(&game);
+// 	return (0);
+// }
 
 // int	main(int argc, char **argv)
 // {
