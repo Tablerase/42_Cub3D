@@ -6,7 +6,7 @@
 #    By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 18:08:42 by rcutte            #+#    #+#              #
-#    Updated: 2024/03/18 15:43:49 by rcutte           ###   ########.fr        #
+#    Updated: 2024/03/18 16:12:33 by rcutte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,7 +106,8 @@ INCLUDES = ./include
 SRC_PATH = ./src/mandatory
 
 # files
-SRC = $(PARSING) \
+SRC = main.c \
+		$(PARSING) \
 		$(UTILS) \
 		$(DATA) \
 		$(EVENTS) \
@@ -122,6 +123,8 @@ DATA = data/map.c \
 
 RAYCASTING = raycasting/raycasting.c \
 		raycasting/raycasting_draw.c \
+		raycasting/raycasting_params.c \
+		raycasting/raycasting_textures.c \
 		raycasting/raycasting_movements.c \
 		raycasting/raycasting_rotations.c \
 
