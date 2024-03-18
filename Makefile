@@ -6,7 +6,7 @@
 #    By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 18:08:42 by rcutte            #+#    #+#              #
-#    Updated: 2024/03/18 16:26:51 by abourgeo         ###   ########.fr        #
+#    Updated: 2024/03/18 17:51:26 by abourgeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,6 +106,7 @@ INCLUDES = ./include
 SRC_PATH = ./src/mandatory
 
 # files
+
 SRC = main.c \
 		$(PARSING) \
 		$(UTILS) \
@@ -113,7 +114,6 @@ SRC = main.c \
 		$(EVENTS) \
 		$(RAYCASTING) \
 		$(GRAPHICS) \
-	
 
 UTILS = utils/mem_free.c \
 
