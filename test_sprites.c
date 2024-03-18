@@ -57,12 +57,12 @@ t_sprite	*sprite_new_node(void *mlx_ptr, char *path)
 
 void	sprite_init_tab(char **tab)
 {
-	tab[0] = "assets/textures/WaterFall/WaterFall1.xpm";
-	tab[1] = "assets/textures/WaterFall/WaterFall2.xpm";
-	tab[2] = "assets/textures/WaterFall/WaterFall3.xpm";
-	tab[3] = "assets/textures/WaterFall/WaterFall4.xpm";
-	tab[4] = "assets/textures/WaterFall/WaterFall5.xpm";
-	tab[5] = "assets/textures/WaterFall/WaterFall6.xpm";
+	tab[0] = "assets/textures/WaterFall/WaterFallWall1.xpm";
+	tab[1] = "assets/textures/WaterFall/WaterFallWall2.xpm";
+	tab[2] = "assets/textures/WaterFall/WaterFallWall3.xpm";
+	tab[3] = "assets/textures/WaterFall/WaterFallWall4.xpm";
+	tab[4] = "assets/textures/WaterFall/WaterFallWall5.xpm";
+	tab[5] = "assets/textures/WaterFall/WaterFallWall6.xpm";
 	tab[6] = NULL;
 }
 
@@ -88,7 +88,7 @@ void	sprite_create_list(t_data *data, char **tab)
 
 void	sprite_new_sprite(t_data *data)
 {
-	char	*tab[7];
+	char	*tab[8];
 
 	sprite_init_tab(tab);
 	data->head = malloc(sizeof(t_sprite *));
@@ -100,7 +100,7 @@ void	sprite_new_sprite(t_data *data)
 	(*(data->head))->last = 0;
 	(*(data->head))->next = *(data->head);
 	sprite_create_list(data, tab);
-	data->on_screen = *(data->head);
+	data->on_screen = (*(data->head))->next;
 }
 
 void	sprite_free_list(t_data *data)
@@ -166,6 +166,7 @@ int	main(void)
 	data.mlx_win = mlx_new_window(data.mlx_ptr, 1024, 600, "sprite");
 	if (data.mlx_win == NULL)
 		sprite_exit_error(&data);
+	mlx_put_image_to_window(data.mlx_ptr, data.mlx_win, (*(data.head))->img.img, 0, 0);
 	mlx_loop_hook(data.mlx_ptr, &display, &data);
 	mlx_hook(data.mlx_win, 17, 0, &sprite_exit_error, &data);
 	mlx_loop(data.mlx_ptr);
