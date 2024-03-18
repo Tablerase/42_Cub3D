@@ -14,7 +14,7 @@
 # define LIBFT_H
 
 # include "../Includes/ft_printf.h"
-# include "../Includes/get_next_line_bonus.h"
+# include "../Includes/get_next_line.h"
 
 # include <stdarg.h>
 # include <stdlib.h>
@@ -84,6 +84,6 @@ int		ft_printf(const char *format, ...);
 
 // GNL
 
-char	*get_next_line(int fd, int status);
+char	*get_next_line(int fd);
 
 #endif
