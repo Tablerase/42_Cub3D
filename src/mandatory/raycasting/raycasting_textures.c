@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 17:49:34 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/18 12:52:55 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/18 16:50:49 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
  * @brief Find the texture of the wall
  * @param game The game struct
  * @param ray The ray struct
+ * @note x coordinate is calculated with the wall_x and the width of the texture
+ * ! Add a note about the flip of the texture
 */
 void	find_tile_texture(t_game *game, t_ray *ray)
 {
@@ -30,16 +32,13 @@ void	find_tile_texture(t_game *game, t_ray *ray)
 	else
 		texture = &game->textures.west;
 	ray->tex_x = (int)(ray->wall_x * (double)texture->width);
-	printf("ray->tex_x: %d\n", ray->tex_x);
 	if (ray->side == NS && ray->ray_dir_y > 0)
 	{
 		ray->tex_x = texture->width - ray->tex_x - 1;
-		printf("Cond NS ray->tex_x: %d\n", ray->tex_x);
 	}
 	if (ray->side == EW && ray->ray_dir_x < 0)
 	{
 		ray->tex_x = texture->width - ray->tex_x - 1;
-		printf("Cond EW ray->tex_x: %d\n", ray->tex_x);
 	}
 }
 
