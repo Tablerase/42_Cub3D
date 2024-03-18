@@ -31,7 +31,8 @@ SRC = ft_isascii.c  ft_memmove.c  ft_strlcpy.c  ft_substr.c\
 	ft_lstclear_bonus.c	ft_lstiter_bonus.c	ft_lstmap_bonus.c\
 	ft_printf/ft_printf.c ft_printf/ft_printf_utils.c\
 	ft_printf/ft_printf_unsigned_utils.c\
-	gnl/get_next_line_bonus.c\
+	gnl/get_next_line.c\
+	gnl/get_next_line_utils.c\
 
 # objet libft
 OBJ = $(addprefix $(SRC_PATH), $(SRC:.c=.o))
