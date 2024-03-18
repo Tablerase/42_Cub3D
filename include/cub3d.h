@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:25:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/18 15:20:57 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/18 15:45:09 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@
 # include "../libft/Includes/libft.h"
 // Shapes
 # include "shapes.h"
+// Parsing
+# include "parsing.h"
 
 /* ################################ DEFINES ################################ */
 
@@ -51,7 +53,7 @@
 // Protection against division by zero
 // # define INFINITY 1e30 (present in math.h)
 
-/* ############################# ENUMERATIONS ############################## */
+/* ############################## STRUCTURES ############################### */
 
 /**
  * @brief Enum for the keys
@@ -63,47 +65,6 @@ enum e_key
 	RELEASED,
 	PRESSED
 };
-
-/**
- * @brief Enum for the tiles
- * @param EMPTY The empty tile
- * @param WALL The wall tile
-*/
-enum e_tile
-{
-	GROUND,
-	WALL,
-	DOOR,
-	EMPTY
-};
-
-/**
- * @brief Enum for the side
- * @param EW The east/west side
- * @param NS The north/south side
-*/
-enum e_side
-{
-	NS,
-	EW
-};
-
-/**
- * @brief Enum for the textures
- * @param NORTH The north texture
- * @param SOUTH The south texture
- * @param EAST The east texture
- * @param WEST The west texture
-*/
-enum e_texture
-{
-	NORTH,
-	SOUTH,
-	EAST,
-	WEST
-};
-
-/* ############################## STRUCTURES ############################### */
 
 /**
  * @brief Struct for the keys
@@ -177,6 +138,20 @@ typedef struct s_player
 }	t_player;
 
 /**
+ * @brief Enum for the tiles
+ * @param EMPTY The empty tile
+ * @param WALL The wall tile
+*/
+enum e_tile
+{
+	GROUND,
+	WALL,
+	PLAYER,
+	DOOR,
+	EMPTY
+};
+
+/**
  * @brief Struct for the map
  * @param width The width of the map
  * @param height The height of the map
@@ -188,6 +163,17 @@ typedef struct s_map
 	int			height;
 	enum e_tile	**map;
 }	t_map;
+
+/**
+ * @brief Enum for the side
+ * @param EW The east/west side
+ * @param NS The north/south side
+*/
+enum e_side
+{
+	EW,
+	NS
+};
 
 /**
  * @brief Struct for the ray
@@ -211,12 +197,6 @@ typedef struct s_map
  * @param draw_start The start of the line to draw
  * @param draw_end The end of the line to draw
  * @param color The color of the line to draw
- * @param tile The tile that was hit
- * @param texture The texture side of the wall/tile type
- * @param wall_x The x coordinate of the tile that was hit. Needed to calculate
- * the x coordinate of the texture that will be used to draw the wall/tile type
- * @param tex_x The x coordinate of the texture that will be used 
- * to draw the wall
  * @note Using double gives more precision to the ray calculations
  * (but it's slower than using float)
 */
@@ -242,13 +222,22 @@ typedef struct s_ray
 	int					draw_start;
 	int					draw_end;
 	int					color;
-
-	enum e_tile			tile;
-	enum e_texture		texture;
-	double				wall_x;
-	int					tex_x;
-	int					tex_y;
 }	t_ray;
+
+/**
+ * @brief Enum for the textures
+ * @param NORTH The north texture
+ * @param SOUTH The south texture
+ * @param EAST The east texture
+ * @param WEST The west texture
+*/
+enum e_texture
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST
+};
 
 /**
  * @brief Struct for the texture
@@ -319,11 +308,6 @@ bool	ft_setup(t_game *game);
 void	raycasting(t_game *game);
 void	calculate_perp_wall_dist(t_ray *ray);
 void	calculate_line_params(t_ray *ray);
-
-	// Textures
-void	find_wall_texture(t_game *game, t_ray *ray);
-
-	// Simple color
 void	find_wall_color(t_game *game, t_ray *ray);
 
 // Movement
@@ -364,5 +348,91 @@ void	line(t_img *img, t_point p1, t_point p2, int color);
 
 void	rectangle(t_img *img, t_point start, t_point end, int color);
 void	fill_rectangle(t_img *img, t_point start, t_point end, int color);
+
+/* ################################ PARSING ################################ */
+
+// parsing_map.c
+
+void	parsing_map_single(t_game *game);
+void	parsing_map_closed_and_single(t_game *game);
+void	parse_map(t_game *game, t_fds fd);
+
+// parsing_map_utils.c
+
+void	parsing_find_start_index(t_game *game, int *i_start, int *j_start);
+void	parsing_fill_test_map(t_game *game, t_map *test_map);
+void	parsing_check_nb_island(t_game *game, t_map *test_map);
+void	parsing_fill_first_island(t_map *map, int i, int j);
+void	free_parse_map(t_game *game, int fd2);
+
+// parsing_map_valid_tiles.c
+
+int		is_edge(t_map map, int i, int j);
+int		unclosed_ground(t_map map, int i, int j);
+void	parsing_count_player_map(t_game *game);
+
+// parsing_map_collect.c
+
+void	parsing_fill_submap(t_game *game, char *buffer, int i, t_fds fd);
+void	parsing_collect_map(t_game *game, t_fds fd);
+
+// parsing_map_size.c
+
+int		is_char_to_trim(char c, char const *to_trim);
+char	*right_strtrim(char *src, char *to_trim);
+char	*right_trim_gnl(t_game *game, t_fds fd);
+void	parsing_check_if_end_of_map(t_game *game, t_fds fd, char *prev_buffer);
+void	parsing_width_height_map(t_game *game, t_fds fd);
+
+// parsing_colors.c
+
+void	parsing_set_color(t_game *game, char *identifier, char *color_rgb,
+			t_fds fd);
+void	parsing_char_color(t_game *game, char *color_rgb, t_fds fd);
+void	parsing_color_format(t_game *game, char *color_rgb, t_fds fd);
+void	parsing_color_range(t_game *game, int *texture_color,
+			char *color_rgb, t_fds fd);
+
+// parsing_colors_utils.c
+
+void	parsing_free_color(t_game *game, char *color_rgb, t_fds fd);
+int		parsing_count_digits(char *color_rgb, int *i);
+
+// parsing_free.c
+
+void	parsing_free(t_game *game);
+void	parsing_free_textures(t_game *game);
+int		parsing_clean_end(t_game *game);
+void	parsing_exit_error(t_game *game);
+void	parsing_free_test_map(t_game *game, t_map *test_map, int success);
+
+// parsing_textures.c
+
+void	parsing_set_texture(t_game *game, char **buffer, char *identifier,
+			t_fds fd);
+void	parsing_textures(t_game *game, t_fds fd);
+void	allocate_data_texture(t_game *game, t_img *face, char *texture_path,
+			t_fds fd);
+void	parsing_free_error_textures(t_game *game, t_fds fd,
+			char *buffer);
+
+// parsing_utils.c
+
+char	*trimed_gnl(t_fds fd, const char *to_trim);
+char	*parsing_add_count(t_count_id *nb_identifier, char *identifier);
+int		count_id(t_count_id nb_identifier);
+char	*parsing_found_identifier(char *buffer, t_count_id *nb_textures);
+int		ft_strcmp(char *s1, char *s2);
+
+// parsing_init.c
+
+void	parsing_init(t_game *game);
+void	parsing_init_textures(t_game *game);
+void	parsing_init_test_map(t_game *game, t_map *test_map);
+
+// parsing.c
+
+void	parsing_file_name_and_format(t_game *game, char *filename);
+void	parsing(t_game *game, char *filename);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 18:08:42 by rcutte            #+#    #+#              #
-#    Updated: 2024/03/18 12:59:15 by rcutte           ###   ########.fr        #
+#    Updated: 2024/03/18 15:43:49 by rcutte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,12 +106,13 @@ INCLUDES = ./include
 SRC_PATH = ./src/mandatory
 
 # files
-SRC = main.c \
+SRC = $(PARSING) \
 		$(UTILS) \
 		$(DATA) \
 		$(EVENTS) \
 		$(RAYCASTING) \
 		$(GRAPHICS) \
+	
 
 UTILS = utils/mem_free.c \
 
@@ -120,8 +121,7 @@ DATA = data/map.c \
 		data/player_init.c \
 
 RAYCASTING = raycasting/raycasting.c \
-		raycasting/raycasting_params.c \
-		raycasting/raycasting_textures.c \
+		raycasting/raycasting_draw.c \
 		raycasting/raycasting_movements.c \
 		raycasting/raycasting_rotations.c \
 
@@ -132,6 +132,19 @@ GRAPHICS = graphics/graphics_server.c \
 		graphics/graphics_shapes_lines.c \
 
 EVENTS = events/event_handlers.c \
+
+PARSING = parsing/parsing_colors.c \
+		parsing/parsing_map.c \
+		parsing/parsing_free.c \
+		parsing/parsing_textures.c \
+		parsing/parsing_utils.c \
+		parsing/parsing.c \
+		parsing/parsing_map_collect.c \
+		parsing/parsing_map_size.c \
+		parsing/parsing_map_utils.c \
+		parsing/parsing_init.c \
+		parsing/parsing_map_valid_tiles.c \
+		parsing/parsing_colors_utils.c \
 
 # objet libft
 OBJ = $(addprefix $(SRC_PATH)/,$(SRC:.c=.o))
