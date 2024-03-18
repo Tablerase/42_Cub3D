@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:25:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/18 15:45:09 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/18 15:58:53 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@
 // Protection against division by zero
 // # define INFINITY 1e30 (present in math.h)
 
-/* ############################## STRUCTURES ############################### */
+/* ############################# ENUMERATIONS ############################## */
 
 /**
  * @brief Enum for the keys
@@ -65,6 +65,47 @@ enum e_key
 	RELEASED,
 	PRESSED
 };
+
+/**
+ * @brief Enum for the tiles
+ * @param EMPTY The empty tile
+ * @param WALL The wall tile
+*/
+enum e_tile
+{
+	GROUND,
+	WALL,
+	DOOR,
+	EMPTY
+};
+
+/**
+ * @brief Enum for the side
+ * @param EW The east/west side
+ * @param NS The north/south side
+*/
+enum e_side
+{
+	NS,
+	EW
+};
+
+/**
+ * @brief Enum for the textures
+ * @param NORTH The north texture
+ * @param SOUTH The south texture
+ * @param EAST The east texture
+ * @param WEST The west texture
+*/
+enum e_texture
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST
+};
+
+/* ############################## STRUCTURES ############################### */
 
 /**
  * @brief Struct for the keys
@@ -138,20 +179,6 @@ typedef struct s_player
 }	t_player;
 
 /**
- * @brief Enum for the tiles
- * @param EMPTY The empty tile
- * @param WALL The wall tile
-*/
-enum e_tile
-{
-	GROUND,
-	WALL,
-	PLAYER,
-	DOOR,
-	EMPTY
-};
-
-/**
  * @brief Struct for the map
  * @param width The width of the map
  * @param height The height of the map
@@ -163,17 +190,6 @@ typedef struct s_map
 	int			height;
 	enum e_tile	**map;
 }	t_map;
-
-/**
- * @brief Enum for the side
- * @param EW The east/west side
- * @param NS The north/south side
-*/
-enum e_side
-{
-	EW,
-	NS
-};
 
 /**
  * @brief Struct for the ray
@@ -197,6 +213,12 @@ enum e_side
  * @param draw_start The start of the line to draw
  * @param draw_end The end of the line to draw
  * @param color The color of the line to draw
+ * @param tile The tile that was hit
+ * @param texture The texture side of the wall/tile type
+ * @param wall_x The x coordinate of the tile that was hit. Needed to calculate
+ * the x coordinate of the texture that will be used to draw the wall/tile type
+ * @param tex_x The x coordinate of the texture that will be used 
+ * to draw the wall
  * @note Using double gives more precision to the ray calculations
  * (but it's slower than using float)
 */
@@ -222,22 +244,13 @@ typedef struct s_ray
 	int					draw_start;
 	int					draw_end;
 	int					color;
-}	t_ray;
 
-/**
- * @brief Enum for the textures
- * @param NORTH The north texture
- * @param SOUTH The south texture
- * @param EAST The east texture
- * @param WEST The west texture
-*/
-enum e_texture
-{
-	NORTH,
-	SOUTH,
-	EAST,
-	WEST
-};
+	enum e_tile			tile;
+	enum e_texture		texture;
+	double				wall_x;
+	int					tex_x;
+	int					tex_y;
+}	t_ray;
 
 /**
  * @brief Struct for the texture
@@ -308,6 +321,11 @@ bool	ft_setup(t_game *game);
 void	raycasting(t_game *game);
 void	calculate_perp_wall_dist(t_ray *ray);
 void	calculate_line_params(t_ray *ray);
+
+	// Textures
+void	find_wall_texture(t_game *game, t_ray *ray);
+
+	// Simple color
 void	find_wall_color(t_game *game, t_ray *ray);
 
 // Movement
