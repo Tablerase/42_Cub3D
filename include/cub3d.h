@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:25:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/19 12:20:43 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/19 15:24:53 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -335,6 +335,7 @@ void	calculate_line_params(t_ray *ray);
 
 	// Textures
 void	find_wall_texture(t_game *game, t_ray *ray);
+void	draw_texture_line(t_game *game, t_ray *ray);
 
 	// Simple color
 void	find_wall_color(t_game *game, t_ray *ray);
@@ -363,6 +364,7 @@ void	ft_events(t_game *game);
 
 // Exit
 
+void	ft_free_all(t_game *game);
 int		ft_exit(t_game *game);
 
 /* ################################ SHAPES ################################# */

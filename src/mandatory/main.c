@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:13:02 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/18 12:58:44 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/19 15:13:18 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	main(void)
 		return (EXIT_FAILURE);
 	if (ft_setup_map(&game) == false)
 		return (EXIT_FAILURE);
-	if (ft_setup_textures(&game) == false)
-		return (EXIT_FAILURE);
 	if (ft_setup(&game) == false)
+		return (ft_exit(&game), EXIT_FAILURE);
+	if (ft_setup_textures(&game) == false)
 		return (EXIT_FAILURE);
 	ft_events(&game);
 	mlx_loop_hook(game.mlx.mlx, ft_gameplay, &game);

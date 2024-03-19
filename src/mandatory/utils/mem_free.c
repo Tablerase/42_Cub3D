@@ -6,18 +6,27 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:54:58 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/12 17:00:12 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/19 15:26:38 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3d.h"
 
-/**
- * @brief Function to exit the program
- * @param game The game struct
-*/
-int	ft_exit(t_game *game)
+static void	free_textures(t_game *game)
 {
+	if (game->textures.north.img.img != NULL)
+		mlx_destroy_image(game->mlx.mlx, game->textures.north.img.img);
+	// mlx_destroy_image(game->mlx.mlx, game->textures.south.img.img);
+	// free(game->textures.south.img.addr);
+	// mlx_destroy_image(game->mlx.mlx, game->textures.east.img.img);
+	// free(game->textures.east.img.addr);
+	// mlx_destroy_image(game->mlx.mlx, game->textures.west.img.img);
+	// free(game->textures.west.img.addr);
+}
+
+void	ft_free_all(t_game *game)
+{
+	free_textures(game);
 	if (game->map.map != NULL)
 	{
 		while (game->map.height-- > 0)
@@ -37,6 +46,15 @@ int	ft_exit(t_game *game)
 		mlx_destroy_display(game->mlx.mlx);
 		free(game->mlx.mlx);
 	}
-	exit(0);
+}
+
+/**
+ * @brief Function to exit the program
+ * @param game The game struct
+*/
+int	ft_exit(t_game *game)
+{
+	ft_free_all(game);
+	exit(EXIT_SUCCESS);
 	return (0);
 }

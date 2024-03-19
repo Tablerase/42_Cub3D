@@ -6,26 +6,20 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 17:49:34 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/19 12:31:23 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/19 16:23:00 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3d.h"
-
-void	find_texture_color(t_game *game, t_ray *ray)
-{
-	int	color;
-
-	color = 0;
-	(void)game;
-	(void)ray;
-}
 
 /**
  * @brief Draw the texture line
  * @param game The game struct
  * @param ray The ray struct
  * @note This function will be used to draw the texture line
+ * @note The tex_y is calculated based on the tex_coord and the height of the
+ * texture, a mask is applied to prevent overflow - & (texture->height - 1)
+ * will truncate every value greater than the height of the texture
  * @note The tex_step increases the tex_coord based on the line_height
  * @note The tex_coord is initialized centered on the screen and then
  * it is increased based on the line_height
@@ -33,17 +27,47 @@ void	find_texture_color(t_game *game, t_ray *ray)
 */
 void	draw_texture_line(t_game *game, t_ray *ray)
 {
-	ray->y = ray->draw_start;
-	ray->tex_step = 1.0 * ray->texture->height / ray->line_height;
-	ray->tex_coord = (ray->draw_start - HEIGHT / 2
-			+ ray->line_height / 2) * ray->tex_step;
-	while (ray->y < ray->draw_end)
+	int		offset;
+	int		offset_texture;
+	int		y;
+	int		x;
+
+	y = 0;
+	x = ray->x;
+	// Draw ceiling
+	while (y < HEIGHT - ray->draw_end)
 	{
-		ray->tex_y = (int)ray->tex_coord & (ray->texture->height - 1);
-		ray->tex_coord += ray->tex_step;
-		pixel_put(&game->img, ray->x, ray->y, ray->color);
-		ray->y++;
+		offset = (y * game->img.line_len + x * (game->img.bpp / 8));
+		*(unsigned int *)(game->img.addr + offset) = game->textures.ceiling_color;
+		y++;
 	}
+	// Draw wall
+	while (y < HEIGHT - ray->draw_start)
+	{
+		offset = (y * game->img.line_len + x * (game->img.bpp / 8));
+		offset_texture = (int)ray->tex_y * ray->texture->img.line_len + ray->tex_x * (ray->texture->img.bpp / 8);
+		*(unsigned int *)(game->img.addr + offset) = *(unsigned int *)(ray->texture->img.addr + offset_texture);
+		y++;
+	}
+	// Draw floor
+	while (y < HEIGHT)
+	{
+		offset = (y * game->img.line_len + x * (game->img.bpp / 8));
+		*(unsigned int *)(game->img.addr + offset) = game->textures.floor_color;
+		y++;
+	}
+	
+	// ray->y = ray->draw_start;
+	// ray->tex_step = 1.0 * ray->texture->height / ray->line_height;
+	// ray->tex_coord = (ray->draw_start - HEIGHT / 2
+	// 		+ ray->line_height / 2) * ray->tex_step;
+	// while (ray->y < ray->draw_end)
+	// {
+	// 	ray->tex_y = (int)ray->tex_coord & (ray->texture->height - 1);
+	// 	ray->tex_coord += ray->tex_step;
+	// 	find_texture_color(game, ray);
+	// 	ray->y++;
+	// }
 }
 
 /**
@@ -114,5 +138,4 @@ void	find_wall_texture(t_game *game, t_ray *ray)
 	ray->tile = game->map.map[ray->map_y][ray->map_x];
 	find_tile_side_x(game, ray);
 	find_tile_texture(ray);
-	draw_texture_line(game, ray);
 }

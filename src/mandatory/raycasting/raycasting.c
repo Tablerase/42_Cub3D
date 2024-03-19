@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:42:01 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/19 12:23:15 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/19 14:49:43 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,14 +140,15 @@ void	raycasting(t_game *game)
 		// 	&game->img, (t_point){x, ray.draw_start},
 		// 	(t_point){x, ray.draw_end}, ray.color);
 		find_wall_texture(game, &ray);
+		draw_texture_line(game, &ray);
 
 		// Floor and ceiling
-		draw_vertical_line(
-			&game->img, (t_point){x, 0},
-			(t_point){x, ray.draw_start}, game->textures.ceiling_color);
-		draw_vertical_line(
-			&game->img, (t_point){x, ray.draw_end},
-			(t_point){x, HEIGHT}, game->textures.floor_color);
+		// draw_vertical_line(
+		// 	&game->img, (t_point){x, 0},
+		// 	(t_point){x, ray.draw_start}, game->textures.ceiling_color);
+		// draw_vertical_line(
+		// 	&game->img, (t_point){x, ray.draw_end},
+		// 	(t_point){x, HEIGHT}, game->textures.floor_color);
 		x++;
 	}
 }
