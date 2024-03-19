@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 17:49:34 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/19 16:28:29 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/19 17:45:54 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	find_tile_side_x(t_game *game, t_ray *ray)
 {
 	if (ray->side == NS)
 	{
-		if (ray->ray_dir_y < 0)
+		if (ray->step_x < 0)
 			ray->texture = &game->textures.south;
 		else
 			ray->texture = &game->textures.north;
@@ -59,7 +59,7 @@ void	find_tile_side_x(t_game *game, t_ray *ray)
 	}
 	else
 	{
-		if (ray->ray_dir_x < 0)
+		if (ray->step_y < 0)
 			ray->texture = &game->textures.east;
 		else
 			ray->texture = &game->textures.west;
