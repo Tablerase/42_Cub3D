@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:25:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/18 16:13:00 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/19 12:20:43 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,67 +193,6 @@ typedef struct s_map
 }	t_map;
 
 /**
- * @brief Struct for the ray
- * @param camera_x The x position of the camera
- * @param camera_y The y position of the camera
- * @param ray_dir_x The x direction of the ray
- * @param ray_dir_y The y direction of the ray
- * @param map_x The current x position in the map grid of the cell
- * @param map_y The current y position in the map grid of the cell
- * @param side_dist_x The distance to the side in the x axis
- * @param side_dist_y The distance to the side in the y axis
- * @param delta_dist_x The distance to the next x side
- * @param delta_dist_y The distance to the next y side
- * @param perp_wall_dist The perpendicular wall distance
- * (used to calculate the length of the ray)
- * @param step_x The step in the x axis
- * @param step_y The step in the y axis
- * @param hit The hit status (true if the ray hit a wall, false otherwise)
- * @param side The side of the hitted wall	(0 = NS, 1 = EW)
- * @param line_height The height of the line to draw
- * @param draw_start The start of the line to draw
- * @param draw_end The end of the line to draw
- * @param color The color of the line to draw
- * @param tile The tile that was hit
- * @param texture The texture side of the wall/tile type
- * @param wall_x The x coordinate of the tile that was hit. Needed to calculate
- * the x coordinate of the texture that will be used to draw the wall/tile type
- * @param tex_x The x coordinate of the texture that will be used 
- * to draw the wall
- * @note Using double gives more precision to the ray calculations
- * (but it's slower than using float)
-*/
-typedef struct s_ray
-{
-	double				camera_x;
-	double				camera_y;
-	double				ray_dir_x;
-	double				ray_dir_y;
-	int					map_x;
-	int					map_y;
-	double				side_dist_x;
-	double				side_dist_y;
-	double				delta_dist_x;
-	double				delta_dist_y;
-	double				perp_wall_dist;
-	int					step_x;
-	int					step_y;
-	bool				hit;
-	enum e_side			side;
-
-	int					line_height;
-	int					draw_start;
-	int					draw_end;
-	int					color;
-
-	enum e_tile			tile;
-	enum e_texture		texture;
-	double				wall_x;
-	int					tex_x;
-	int					tex_y;
-}	t_ray;
-
-/**
  * @brief Struct for the texture
  * @param type The type of the texture
  * @param path The path to the texture
@@ -288,6 +227,77 @@ typedef struct s_textures
 	int			floor_color;
 	int			ceiling_color;
 }	t_textures;
+
+/**
+ * @brief Struct for the ray
+ * @param camera_x The x position of the camera
+ * @param camera_y The y position of the camera
+ * @param ray_dir_x The x direction of the ray
+ * @param ray_dir_y The y direction of the ray
+ * @param map_x The current x position in the map grid of the cell
+ * @param map_y The current y position in the map grid of the cell
+ * @param side_dist_x The distance to the side in the x axis
+ * @param side_dist_y The distance to the side in the y axis
+ * @param delta_dist_x The distance to the next x side
+ * @param delta_dist_y The distance to the next y side
+ * @param perp_wall_dist The perpendicular wall distance
+ * (used to calculate the length of the ray)
+ * @param step_x The step in the x axis
+ * @param step_y The step in the y axis
+ * @param hit The hit status (true if the ray hit a wall, false otherwise)
+ * @param side The side of the hitted wall	(0 = NS, 1 = EW)
+ * @param x The x coordinate of the ray in the screen (used to draw the line)
+ * @param y The y coordinate of the ray in the screen (used to draw the line)
+ * @param line_height The height of the line to draw
+ * @param draw_start The start of the line to draw
+ * @param draw_end The end of the line to draw
+ * @param color The color of the line to draw (if no texture is used)
+ * @param tile The tile that was hit
+ * @param texture The texture side of the wall/tile type
+ * @param wall_x The x coordinate of the tile that was hit. Needed to calculate
+ * the x coordinate of the texture that will be used to draw the wall/tile type
+ * @param tex_x The x coordinate of the texture that will be used 
+ * to draw the wall
+ * @param tex_y The y coordinate of the texture that will be used
+ * to draw the wall
+ * @param tex_coord The texture coordinate to draw the line
+ * @param tex_step The texture step (increment the texture coordinate)
+ * @note Using double gives more precision to the ray calculations
+ * (but it's slower than using float)
+*/
+typedef struct s_ray
+{
+	double				camera_x;
+	double				camera_y;
+	double				ray_dir_x;
+	double				ray_dir_y;
+	int					map_x;
+	int					map_y;
+	double				side_dist_x;
+	double				side_dist_y;
+	double				delta_dist_x;
+	double				delta_dist_y;
+	double				perp_wall_dist;
+	int					step_x;
+	int					step_y;
+	bool				hit;
+	enum e_side			side;
+
+	int					x;
+	int					y;
+	int					line_height;
+	int					draw_start;
+	int					draw_end;
+	int					color;
+
+	enum e_tile			tile;
+	t_texture			*texture;
+	double				wall_x;
+	int					tex_x;
+	int					tex_y;
+	double				tex_coord;
+	double				tex_step;
+}	t_ray;
 
 /**
  * @brief Struct for the game

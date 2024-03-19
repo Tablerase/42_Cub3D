@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:42:01 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/18 15:23:23 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/19 12:23:15 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
  * @brief Initialization of the ray
  * @param game The game struct
  * @param ray The ray struct
- * @param x The x position
  * @note This function will be used to initialize the ray
  * @note The division are protected against division by zero (0.0000001)
  * @note The camera_x is calculated based on the x position according to the
@@ -26,6 +25,8 @@
 */
 static void	init_ray(t_game *game, t_ray *ray, int x)
 {
+	ray->x = x;
+	ray->y = 0;
 	ray->camera_x = 2 * x / (double)WIDTH - 1;
 	ray->ray_dir_x = game->player.dir_x + game->player.plane_x * ray->camera_x;
 	ray->ray_dir_y = game->player.dir_y + game->player.plane_y * ray->camera_x;
@@ -41,6 +42,7 @@ static void	init_ray(t_game *game, t_ray *ray, int x)
 	ray->wall_x = 0;
 	ray->tex_x = 0;
 	ray->tex_y = 0;
+	ray->color = create_argb(0, 10, 200, 80);
 }
 
 /**
