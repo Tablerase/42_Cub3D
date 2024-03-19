@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 17:49:34 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/19 17:45:54 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/19 18:22:20 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 void	find_tile_texture(t_ray *ray)
 {
 	ray->tex_x = (int)(ray->wall_x * (double)ray->texture->width);
-	if (ray->side == NS && ray->ray_dir_y > 0)
+	if (ray->side == EW && ray->ray_dir_y > 0)
 	{
 		ray->tex_x = ray->texture->width - ray->tex_x - 1;
 	}
-	if (ray->side == EW && ray->ray_dir_x < 0)
+	if (ray->side == NS && ray->ray_dir_x < 0)
 	{
 		ray->tex_x = ray->texture->width - ray->tex_x - 1;
 	}
@@ -48,21 +48,21 @@ void	find_tile_texture(t_ray *ray)
 */
 void	find_tile_side_x(t_game *game, t_ray *ray)
 {
-	if (ray->side == NS)
+	if (ray->side == EW)
 	{
 		if (ray->step_x < 0)
-			ray->texture = &game->textures.south;
+			ray->texture = &game->textures.east;
 		else
-			ray->texture = &game->textures.north;
+			ray->texture = &game->textures.west;
 		ray->wall_x = game->player.pos_y + ray->perp_wall_dist
 			* ray->ray_dir_y;
 	}
 	else
 	{
 		if (ray->step_y < 0)
-			ray->texture = &game->textures.east;
+			ray->texture = &game->textures.north;
 		else
-			ray->texture = &game->textures.west;
+			ray->texture = &game->textures.south;
 		ray->wall_x = game->player.pos_x + ray->perp_wall_dist
 			* ray->ray_dir_x;
 	}

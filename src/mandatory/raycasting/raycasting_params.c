@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 18:03:28 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/15 18:51:10 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/19 18:20:53 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 */
 void	calculate_perp_wall_dist(t_ray *ray)
 {
-	if (ray->side == NS)
+	if (ray->side == EW)
 		ray->perp_wall_dist = ray->side_dist_x - ray->delta_dist_x;
 	else
 		ray->perp_wall_dist = ray->side_dist_y - ray->delta_dist_y;
@@ -61,7 +61,7 @@ void	find_wall_color(t_game *game, t_ray *ray)
 {
 	if (game->map.map[ray->map_y][ray->map_x] == WALL)
 	{
-		if (ray->side == NS)
+		if (ray->side == EW)
 		{
 			if (ray->step_x == -1)
 				ray->color = create_argb(0, 0, 0, 255);
