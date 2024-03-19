@@ -6,25 +6,16 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:59:33 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/19 15:27:32 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/19 16:39:36 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3d.h"
 
-bool	ft_setup_textures(t_game *game)
+bool	init_texture(t_game *game, t_texture *texture, char *path, int type)
 {
-	t_texture	*texture;
-
-	texture = &game->textures.north;
-	// Get path of the texture
-	texture->path = "./assets/textures/japan-wall-tatami.xpm";
-	// Initialize the texture info
-	texture->type = NORTH;
-	// Get size of the texture
-	texture->height = 32;
-	texture->width = 32;
-	// Load the texture
+	texture->path = path;
+	texture->type = type;
 	texture->img.img = mlx_xpm_file_to_image(game->mlx.mlx, texture->path, &texture->width, &texture->height);
 	if (texture->img.img == NULL)
 	{
@@ -37,9 +28,27 @@ bool	ft_setup_textures(t_game *game)
 		printf("%sError:%s Texture Address not found\n", BRED, RESET);
 		return (false);
 	}
-	game->textures.south = game->textures.north;
-	game->textures.east = game->textures.north;
-	game->textures.west = game->textures.north;
+	return (true);
+}
+
+bool	ft_setup_textures(t_game *game)
+{
+	game->textures.north.height = 32;
+	game->textures.north.width = 32;
+	if (init_texture(game, &game->textures.north, "./assets/textures/japan-wall-shoji-wall.xpm", NORTH) == false)
+		return (false);
+	game->textures.south.height = 32;
+	game->textures.south.width = 32;
+	if (init_texture(game, &game->textures.south, "./assets/textures/japan-wall-shoji-wall-2.xpm", SOUTH) == false)
+		return (false);
+	game->textures.east.height = 32;
+	game->textures.east.width = 32;
+	if (init_texture(game, &game->textures.east, "./assets/textures/japan-wall-tatami-3.xpm", EAST) == false)
+		return (false);
+	game->textures.west.height = 32;
+	game->textures.west.width = 32;
+	if (init_texture(game, &game->textures.west, "./assets/textures/japan-wall-tatami-2.xpm", WEST) == false)
+		return (false);
 
 	// Set the floor and ceiling color
 	game->textures.floor_color = create_argb(0, 205, 133, 63);
