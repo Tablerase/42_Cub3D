@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 16:28:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/19 16:28:38 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/19 23:26:55 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	draw_texture_line(t_game *game, t_ray *ray)
 	// Draw ceiling
 	while (y < HEIGHT - ray->draw_end)
 	{
+		if (y < 0 || y >= HEIGHT || x < 0 || x >= WIDTH)
+			break ;
 		offset = (y * game->img.line_len + x * (game->img.bpp / 8));
 		*(unsigned int *)(game->img.addr + offset) = game->textures.ceiling_color;
 		y++;

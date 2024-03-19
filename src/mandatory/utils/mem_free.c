@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:54:58 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/19 15:26:38 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/19 23:23:00 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ static void	free_textures(t_game *game)
 {
 	if (game->textures.north.img.img != NULL)
 		mlx_destroy_image(game->mlx.mlx, game->textures.north.img.img);
-	// mlx_destroy_image(game->mlx.mlx, game->textures.south.img.img);
-	// free(game->textures.south.img.addr);
-	// mlx_destroy_image(game->mlx.mlx, game->textures.east.img.img);
-	// free(game->textures.east.img.addr);
-	// mlx_destroy_image(game->mlx.mlx, game->textures.west.img.img);
-	// free(game->textures.west.img.addr);
+	if (game->textures.south.img.img != NULL)
+		mlx_destroy_image(game->mlx.mlx, game->textures.south.img.img);
+	if (game->textures.east.img.img != NULL)
+		mlx_destroy_image(game->mlx.mlx, game->textures.east.img.img);
+	if (game->textures.west.img.img != NULL)
+		mlx_destroy_image(game->mlx.mlx, game->textures.west.img.img);
 }
 
 void	ft_free_all(t_game *game)
