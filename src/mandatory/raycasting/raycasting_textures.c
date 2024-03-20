@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 17:49:34 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/19 18:22:20 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/20 13:50:12 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 void	find_tile_texture(t_ray *ray)
 {
 	ray->tex_x = (int)(ray->wall_x * (double)ray->texture->width);
-	if (ray->side == EW && ray->ray_dir_y > 0)
-	{
-		ray->tex_x = ray->texture->width - ray->tex_x - 1;
-	}
-	if (ray->side == NS && ray->ray_dir_x < 0)
+	// if (ray->side == EW && ray->ray_dir_y < 0)
+	// {
+	// 	ray->tex_x = ray->texture->width - ray->tex_x - 1;
+	// }
+	if (ray->side == NS && ray->ray_dir_y < 0)
 	{
 		ray->tex_x = ray->texture->width - ray->tex_x - 1;
 	}
