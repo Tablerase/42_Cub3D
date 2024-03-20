@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:42:01 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/19 18:20:21 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/20 17:10:50 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,13 +103,13 @@ static void	dda_algorithm(t_game *game, t_ray *ray)
 		{
 			ray->side_dist_x += ray->delta_dist_x;
 			ray->map_x += ray->step_x;
-			ray->side = EW;
+			ray->side = NS;
 		}
 		else
 		{
 			ray->side_dist_y += ray->delta_dist_y;
 			ray->map_y += ray->step_y;
-			ray->side = NS;
+			ray->side = EW;
 		}
 		if (game->map.map[ray->map_y][ray->map_x] == WALL)
 			ray->hit = true;

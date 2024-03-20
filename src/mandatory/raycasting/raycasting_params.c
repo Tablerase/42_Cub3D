@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 18:03:28 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/19 18:20:53 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/20 17:53:19 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,14 @@
  * @note This function calculate the perpendicular wall distance
  * @note The perpendicular wall distance is calculated based on the 
  * side of the wall that was hit and the side_dist and delta_dist values
+ * @note Horizontal wall (NS) distance is calculated based on the side_dist_x and
+ * delta_dist_x
+ * @note Vertical wall (EW) distance is calculated based on the side_dist_y and
+ * delta_dist_y
 */
 void	calculate_perp_wall_dist(t_ray *ray)
 {
-	if (ray->side == EW)
+	if (ray->side == NS)
 		ray->perp_wall_dist = ray->side_dist_x - ray->delta_dist_x;
 	else
 		ray->perp_wall_dist = ray->side_dist_y - ray->delta_dist_y;

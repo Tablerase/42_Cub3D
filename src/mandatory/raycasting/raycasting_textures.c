@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 17:49:34 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/20 13:50:12 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/20 17:01:53 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@
 void	find_tile_texture(t_ray *ray)
 {
 	ray->tex_x = (int)(ray->wall_x * (double)ray->texture->width);
-	// if (ray->side == EW && ray->ray_dir_y < 0)
-	// {
-	// 	ray->tex_x = ray->texture->width - ray->tex_x - 1;
-	// }
-	if (ray->side == NS && ray->ray_dir_y < 0)
+	if (ray->side == EW && ray->ray_dir_y < 0)
 	{
 		ray->tex_x = ray->texture->width - ray->tex_x - 1;
 	}
+	// if (ray->side == NS && ray->ray_dir_y < 0)
+	// {
+	// 	ray->tex_x = ray->texture->width - ray->tex_x - 1;
+	// }
 }
 
 /**
@@ -48,7 +48,7 @@ void	find_tile_texture(t_ray *ray)
 */
 void	find_tile_side_x(t_game *game, t_ray *ray)
 {
-	if (ray->side == EW)
+	if (ray->side == NS)
 	{
 		if (ray->step_x < 0)
 			ray->texture = &game->textures.east;
