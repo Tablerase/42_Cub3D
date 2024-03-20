@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 17:49:34 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/20 17:01:53 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/20 20:21:54 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
  * @param game The game struct
  * @param ray The ray struct
  * @note x coordinate is calculated with the wall_x and the width of the texture
- * ! Add a note about the flip of the texture
+ * @note If the side is EW and the ray_dir_y is less than 0, 
+ * the texture is flipped
 */
 void	find_tile_texture(t_ray *ray)
 {
@@ -26,11 +27,11 @@ void	find_tile_texture(t_ray *ray)
 	{
 		ray->tex_x = ray->texture->width - ray->tex_x - 1;
 	}
-	// if (ray->side == NS && ray->ray_dir_y < 0)
-	// {
-	// 	ray->tex_x = ray->texture->width - ray->tex_x - 1;
-	// }
 }
+// if (ray->side == NS && ray->ray_dir_y < 0)
+// {
+// 	ray->tex_x = ray->texture->width - ray->tex_x - 1;
+// }
 
 /**
  * @brief Find the side of the wall and get the x coord according to
@@ -48,7 +49,7 @@ void	find_tile_texture(t_ray *ray)
 */
 void	find_tile_side_x(t_game *game, t_ray *ray)
 {
-	if (ray->side == NS)
+	if (ray->side == 0)
 	{
 		if (ray->step_x < 0)
 			ray->texture = &game->textures.east;

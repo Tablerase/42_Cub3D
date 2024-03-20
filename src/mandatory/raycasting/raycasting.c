@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:42:01 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/20 17:10:50 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/20 18:15:13 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
  * @brief Initialization of the ray
  * @param game The game struct
  * @param ray The ray struct
- * @note This function will be used to initialize the ray
  * @note The division are protected against division by zero (0.0000001)
  * @note The camera_x is calculated based on the x position according to the
  * width of the screen

@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 16:28:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/19 23:26:55 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/20 18:15:02 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
  * @brief Draw the texture line
  * @param game The game struct
  * @param ray The ray struct
- * @note This function will be used to draw the texture line
  * @note The tex_y is calculated based on the tex_coord and the height of the
  * texture, a mask is applied to prevent overflow - & (texture->height - 1)
  * will truncate every value greater than the height of the texture
