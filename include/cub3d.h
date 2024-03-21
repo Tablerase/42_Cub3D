@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:25:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/19 15:24:53 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/21 14:33:20 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -442,7 +442,7 @@ void	parsing_free_test_map(t_game *game, t_map *test_map, int success);
 void	parsing_set_texture(t_game *game, char **buffer, char *identifier,
 			t_fds fd);
 void	parsing_textures(t_game *game, t_fds fd);
-void	allocate_data_texture(t_game *game, t_img *face, char *texture_path,
+void	allocate_data_texture(t_game *game, t_texture *face, char *texture_path,
 			t_fds fd);
 void	parsing_free_error_textures(t_game *game, t_fds fd,
 			char *buffer);

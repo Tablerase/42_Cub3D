@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:42:53 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/18 14:28:23 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/21 14:32:37 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@ void	parsing_set_texture(
 	if (texture_path == NULL || texture_path[0] == '\0')
 		parsing_free_error_textures(game, fd, texture_path);
 	if (ft_strcmp("NO", identifier) == 0)
-		allocate_data_texture(game, &(game->textures.north.img),
+		allocate_data_texture(game, &(game->textures.north),
 			texture_path, fd);
 	else if (ft_strcmp("SO", identifier) == 0)
-		allocate_data_texture(game, &(game->textures.south.img),
+		allocate_data_texture(game, &(game->textures.south),
 			texture_path, fd);
 	else if (ft_strcmp("WE", identifier) == 0)
-		allocate_data_texture(game, &(game->textures.west.img),
+		allocate_data_texture(game, &(game->textures.west),
 			texture_path, fd);
 	else if (ft_strcmp("EA", identifier) == 0)
-		allocate_data_texture(game, &(game->textures.east.img),
+		allocate_data_texture(game, &(game->textures.east),
 			texture_path, fd);
 	else if (ft_strcmp("F", identifier) == 0)
 		parsing_set_color(game, identifier, texture_path, fd);
@@ -85,19 +85,19 @@ void	parsing_textures(t_game *game, t_fds fd)
 
 void	allocate_data_texture(
 		t_game *game,
-		t_img *face,
+		t_texture *face,
 		char *texture_path,
 		t_fds fd)
 {
-	face->img = mlx_xpm_file_to_image(game->mlx.mlx, texture_path,
-			&face->bpp, &face->line_len);
-	if (face->img == NULL)
+	face->img.img = mlx_xpm_file_to_image(game->mlx.mlx, texture_path,
+			&face->width, &face->height);
+	if (face->img.img == NULL)
 	{
 		parsing_free_error_textures(game, fd, texture_path);
 	}
-	face->addr = mlx_get_data_addr(face->img, &face->bpp,
-			&face->line_len, &face->endian);
-	if (face->addr == NULL)
+	face->img.addr = mlx_get_data_addr(face->img.img, &face->img.bpp,
+			&face->img.line_len, &face->img.endian);
+	if (face->img.addr == NULL)
 	{
 		parsing_free_error_textures(game, fd, texture_path);
 	}
