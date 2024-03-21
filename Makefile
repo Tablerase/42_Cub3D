@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+         #
+#    By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 18:08:42 by rcutte            #+#    #+#              #
-#    Updated: 2024/03/19 16:28:52 by rcutte           ###   ########.fr        #
+#    Updated: 2024/03/21 13:50:33 by abourgeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,6 +106,7 @@ INCLUDES = ./include
 SRC_PATH = ./src/mandatory
 
 # files
+
 SRC = main.c \
 		$(PARSING) \
 		$(UTILS) \
@@ -113,7 +114,6 @@ SRC = main.c \
 		$(EVENTS) \
 		$(RAYCASTING) \
 		$(GRAPHICS) \
-	
 
 UTILS = utils/mem_free.c \
 
