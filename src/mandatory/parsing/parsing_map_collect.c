@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:15:20 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/21 18:52:24 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/22 10:34:10 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	parsing_fill_submap(t_game *game, char *buffer, int i, t_fds fd)
 			game->map.map[i][j] = EMPTY;
 		else if (buffer[j] == 'N' || buffer[j] == 'S'
 			|| buffer[j] == 'E' || buffer[j] == 'W')
-			game->map.map[i][j] = PLAYER;
+			parsing_found_player(game, buffer[j], i, j);
 		else
 		{
 			free(buffer);

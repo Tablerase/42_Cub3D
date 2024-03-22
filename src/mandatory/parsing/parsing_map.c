@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:17:59 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/18 13:16:31 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/22 10:35:58 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,9 @@ void	parsing_map_closed_and_single(t_game *game)
 		while (j < game->map.width)
 		{
 			if (is_edge(game->map, i, j) == 1
-				&& (game->map.map[i][j] == GROUND
-				|| game->map.map[i][j] == PLAYER))
+				&& game->map.map[i][j] == GROUND)
 				parsing_exit_error(game);
-			if ((game->map.map[i][j] == GROUND
-				|| game->map.map[i][j] == PLAYER)
+			if ((game->map.map[i][j] == GROUND)
 				&& unclosed_ground(game->map, i, j) == 1)
 				parsing_exit_error(game);
 			j++;
@@ -75,6 +73,5 @@ void	parse_map(t_game *game, t_fds fd)
 	game->map.map[i] = NULL;
 	parsing_collect_map(game, fd);
 	close(fd.fd2);
-	parsing_count_player_map(game);
 	parsing_map_closed_and_single(game);
 }

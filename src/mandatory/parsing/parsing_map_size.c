@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 21:09:33 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/18 12:48:01 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/22 09:05:53 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void	parsing_check_if_end_of_map(t_game *game, t_fds fd, char *prev_buffer)
 	return ;
 }
 
-// after this call check for height == 0 for error
 void	parsing_width_height_map(t_game *game, t_fds fd)
 {
 	char	*buffer;

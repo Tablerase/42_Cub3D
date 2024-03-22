@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:32:22 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/21 19:01:00 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/22 10:25:20 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	parsing_file_name_and_format(t_game *game, char *filename)
 	return ;
 }
 
-// called in main
 void	parsing(t_game *game, char *filename)
 {
 	t_fds	fd;
@@ -49,6 +48,8 @@ void	parsing(t_game *game, char *filename)
 	}
 	parsing_textures(game, fd);
 	parse_map(game, fd);
+	if (game->player.pos_x == -1 || game->player.pos_y == -1)
+		parsing_exit_error(game);
 	return ;
 }
 

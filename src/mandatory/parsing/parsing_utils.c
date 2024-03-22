@@ -6,14 +6,13 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:43:43 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/18 14:28:00 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/22 09:11:51 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3d.h"
 
-// to protect
-char	*trimed_gnl(t_fds fd, const char *to_trim)
+char	*trimed_gnl(t_game *game, t_fds fd, const char *to_trim)
 {
 	char	*trimed_buffer;
 	char	*temp_buffer;
@@ -23,7 +22,11 @@ char	*trimed_gnl(t_fds fd, const char *to_trim)
 		return (NULL);
 	trimed_buffer = ft_strtrim(temp_buffer, to_trim);
 	free(temp_buffer);
+	if (trimed_buffer == NULL)
+		parsing_free_error_textures(game, fd, NULL);
 	temp_buffer = get_next_line(fd.fd2);
+	if (temp_buffer == NULL)
+		parsing_free_error_textures(game, fd, trimed_buffer);
 	free(temp_buffer);
 	return (trimed_buffer);
 }

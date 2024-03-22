@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:42:53 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/21 14:32:37 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/22 09:09:37 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	parsing_textures(t_game *game, t_fds fd)
 	char		*identifier;
 
 	parsing_init_count_id(&nb_textures);
-	buffer = trimed_gnl(fd, " \n");
+	buffer = trimed_gnl(game, fd, " \n");
 	while (buffer != NULL)
 	{
 		identifier = parsing_found_identifier(buffer, &nb_textures);
@@ -74,7 +74,7 @@ void	parsing_textures(t_game *game, t_fds fd)
 			free(buffer);
 		if (count_id(nb_textures) == 6 || count_id(nb_textures) == -1)
 			break ;
-		buffer = trimed_gnl(fd, " \n");
+		buffer = trimed_gnl(game, fd, " \n");
 	}
 	if (buffer != NULL)
 		free(buffer);

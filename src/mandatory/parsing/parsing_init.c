@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:56:36 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/18 13:09:47 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/22 08:19:32 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	parsing_init(t_game *game)
 	game->mlx.mlx = mlx_init();
 	if (game->mlx.mlx == NULL)
 		parsing_exit_error(game);
+	game->player.pos_x = -1;
+	game->player.pos_y = -1;
 }
 
 void	parsing_init_textures(t_game *game)

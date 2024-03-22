@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:25:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/21 14:33:20 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/22 10:31:05 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ enum e_tile
 	GROUND,
 	WALL,
 	DOOR,
-	PLAYER,
 	EMPTY
 };
 
@@ -415,6 +414,14 @@ char	*right_trim_gnl(t_game *game, t_fds fd);
 void	parsing_check_if_end_of_map(t_game *game, t_fds fd, char *prev_buffer);
 void	parsing_width_height_map(t_game *game, t_fds fd);
 
+// parsing_init_player_direction.c
+
+void	parsing_found_player(t_game *game, char direction, int i, int j);
+void	parsing_player_north_direction(t_game *game);
+void	parsing_player_south_direction(t_game *game);
+void	parsing_player_west_direction(t_game *game);
+void	parsing_player_east_direction(t_game *game);
+
 // parsing_colors.c
 
 void	parsing_set_color(t_game *game, char *identifier, char *color_rgb,
@@ -449,7 +456,7 @@ void	parsing_free_error_textures(t_game *game, t_fds fd,
 
 // parsing_utils.c
 
-char	*trimed_gnl(t_fds fd, const char *to_trim);
+char	*trimed_gnl(t_game *game, t_fds fd, const char *to_trim);
 char	*parsing_add_count(t_count_id *nb_identifier, char *identifier);
 int		count_id(t_count_id nb_identifier);
 char	*parsing_found_identifier(char *buffer, t_count_id *nb_textures);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 14:37:53 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/04 16:09:08 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/22 10:50:29 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@
 # define C_NAVY 0x000080
 # define C_OLIVE 0x808000
 # define C_TEAL 0x008080
+
+// Customs color
+# define C_CLEAR_BROWN 0xcd853f
 
 // ANSI Color
 //Regular text

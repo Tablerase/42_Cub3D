@@ -6,7 +6,7 @@
 #    By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 18:08:42 by rcutte            #+#    #+#              #
-#    Updated: 2024/03/21 13:50:33 by abourgeo         ###   ########.fr        #
+#    Updated: 2024/03/22 10:23:44 by abourgeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,9 +117,7 @@ SRC = main.c \
 
 UTILS = utils/mem_free.c \
 
-DATA = data/map.c \
-		data/textures.c \
-		data/player_init.c \
+DATA = data/player_init.c \
 
 RAYCASTING = raycasting/raycasting.c \
 		raycasting/raycasting_params.c \
@@ -145,9 +143,11 @@ PARSING = parsing/parsing_colors.c \
 		parsing/parsing_map_collect.c \
 		parsing/parsing_map_size.c \
 		parsing/parsing_map_utils.c \
+		parsing/parsing_init_player_direction.c \
 		parsing/parsing_init.c \
 		parsing/parsing_map_valid_tiles.c \
 		parsing/parsing_colors_utils.c \
+		minimap_bonus.c \
 
 # objet libft
 OBJ = $(addprefix $(SRC_PATH)/,$(SRC:.c=.o))

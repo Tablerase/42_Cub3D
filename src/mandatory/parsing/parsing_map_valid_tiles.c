@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:10:50 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/18 13:11:28 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/22 09:05:41 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,27 +44,28 @@ int	unclosed_ground(t_map map, int i, int j)
 	return (0);
 }
 
-void	parsing_count_player_map(t_game *game)
-{
-	int	count;
-	int	i;
-	int	j;
+// unused
+// void	parsing_count_player_map(t_game *game)
+// {
+// 	int	count;
+// 	int	i;
+// 	int	j;
 
-	count = 0;
-	i = 0;
-	while (game->map.map[i] != NULL)
-	{
-		j = 0;
-		while (j < game->map.width)
-		{
-			if (game->map.map[i][j] == PLAYER)
-				count++;
-			if (count > 1)
-				parsing_exit_error(game);
-			j++;
-		}
-		i++;
-	}
-	if (count != 1)
-		parsing_exit_error(game);
-}
+// 	count = 0;
+// 	i = 0;
+// 	while (game->map.map[i] != NULL)
+// 	{
+// 		j = 0;
+// 		while (j < game->map.width)
+// 		{
+// 			if (game->map.map[i][j] == PLAYER)
+// 				count++;
+// 			if (count > 1)
+// 				parsing_exit_error(game);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// 	if (count != 1)
+// 		parsing_exit_error(game);
+// }
