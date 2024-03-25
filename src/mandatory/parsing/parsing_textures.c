@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:42:53 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/22 09:09:37 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/25 12:16:01 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	parsing_set_texture(
 	free(*buffer);
 	*buffer = NULL;
 	if (texture_path == NULL || texture_path[0] == '\0')
-		parsing_free_error_textures(game, fd, texture_path);
+		parsing_free_error_textures(game, fd, texture_path, 1);
 	if (ft_strcmp("NO", identifier) == 0)
 		allocate_data_texture(game, &(game->textures.north),
 			texture_path, fd);
@@ -69,7 +69,7 @@ void	parsing_textures(t_game *game, t_fds fd)
 		if (identifier != NULL && count_id(nb_textures) != -1)
 			parsing_set_texture(game, &buffer, identifier, fd);
 		else if (buffer[0] != '\0')
-			parsing_free_error_textures(game, fd, buffer);
+			parsing_free_error_textures(game, fd, buffer, 2);
 		else
 			free(buffer);
 		if (count_id(nb_textures) == 6 || count_id(nb_textures) == -1)
@@ -79,7 +79,7 @@ void	parsing_textures(t_game *game, t_fds fd)
 	if (buffer != NULL)
 		free(buffer);
 	if (count_id(nb_textures) != 6)
-		parsing_free_error_textures(game, fd, NULL);
+		parsing_free_error_textures(game, fd, NULL, 2);
 	return ;
 }
 
@@ -93,22 +93,36 @@ void	allocate_data_texture(
 			&face->width, &face->height);
 	if (face->img.img == NULL)
 	{
-		parsing_free_error_textures(game, fd, texture_path);
+		parsing_free_error_textures(game, fd, texture_path, 3);
 	}
 	face->img.addr = mlx_get_data_addr(face->img.img, &face->img.bpp,
 			&face->img.line_len, &face->img.endian);
 	if (face->img.addr == NULL)
 	{
-		parsing_free_error_textures(game, fd, texture_path);
+		parsing_free_error_textures(game, fd, texture_path, 3);
 	}
 	return ;
 }
 
-void	parsing_free_error_textures(t_game *game, t_fds fd, char *buffer)
+void	parsing_free_error_textures(
+			t_game *game,
+			t_fds fd,
+			char *buffer,
+			int error_code)
 {
+	char	*error_msg;
+
 	if (buffer != NULL)
 		free(buffer);
 	close(fd.fd1);
 	close(fd.fd2);
-	parsing_exit_error(game);
+	if (error_code == 1)
+		error_msg = "Invalid texture path\n";
+	if (error_code == 2)
+		error_msg = "Wrong texture id\n";
+	if (error_code == 3)
+		error_msg = "Failed to load image\n";
+	if (error_code == 4)
+		error_msg = "Buffer allocation failed\n";
+	parsing_exit_error(game, error_msg);
 }

@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:08:46 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/18 15:09:17 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/25 12:09:22 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,14 @@ int	parsing_count_digits(char *color_rgb, int *i)
 	return (4);
 }
 
-void	parsing_free_color(t_game *game, char *color_rgb, t_fds fd)
+void	parsing_free_color(
+			t_game *game,
+			char *color_rgb,
+			t_fds fd,
+			char *error_msg)
 {
 	close(fd.fd1);
 	close(fd.fd2);
 	free(color_rgb);
-	parsing_exit_error(game);
+	parsing_exit_error(game, error_msg);
 }

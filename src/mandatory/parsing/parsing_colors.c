@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:41:54 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/18 15:09:15 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/25 11:53:14 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ void	parsing_char_color(t_game *game, char *color_rgb, t_fds fd)
 		if (!(ft_isdigit(color_rgb[i])
 				|| color_rgb[i] == ' ' || color_rgb[i] == ','))
 		{
-			parsing_free_color(game, color_rgb, fd);
+			parsing_free_color(game, color_rgb, fd, "Invalid color format\n");
 		}
 		if (color_rgb[i] == ',')
 			comas++;
 		i++;
 	}
 	if (comas != 2)
-		parsing_free_color(game, color_rgb, fd);
+		parsing_free_color(game, color_rgb, fd, "Invalid color format\n");
 }
 
 void	parsing_color_format(t_game *game, char *color_rgb, t_fds fd)
@@ -73,7 +73,7 @@ void	parsing_color_format(t_game *game, char *color_rgb, t_fds fd)
 	if (color_rgb[i] != '\0' || nb_digits > 3
 		|| (color_rgb[i] == '\0' && ft_isdigit(color_rgb[i - 1]) == 0))
 	{
-		parsing_free_color(game, color_rgb, fd);
+		parsing_free_color(game, color_rgb, fd, "Invalid color format\n");
 	}
 }
 
@@ -104,7 +104,7 @@ void	parsing_color_range(
 		b = b * 10 + color_rgb[i++] - '0';
 	if (r > 255 || g > 255 || b > 255)
 	{
-		parsing_free_color(game, color_rgb, fd);
+		parsing_free_color(game, color_rgb, fd, "Invalid color format\n");
 	}
 	*texture_color = (r << 16) | (g << 8) | b;
 }

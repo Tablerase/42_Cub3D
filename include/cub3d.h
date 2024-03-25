@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:25:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/22 10:31:05 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/25 12:19:08 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -393,7 +393,7 @@ void	parsing_find_start_index(t_game *game, int *i_start, int *j_start);
 void	parsing_fill_test_map(t_game *game, t_map *test_map);
 void	parsing_check_nb_island(t_game *game, t_map *test_map);
 void	parsing_fill_first_island(t_map *map, int i, int j);
-void	free_parse_map(t_game *game, int fd2);
+void	free_parse_map(t_game *game, int fd2, char *error_msg);
 
 // parsing_map_valid_tiles.c
 
@@ -433,7 +433,11 @@ void	parsing_color_range(t_game *game, int *texture_color,
 
 // parsing_colors_utils.c
 
-void	parsing_free_color(t_game *game, char *color_rgb, t_fds fd);
+void	parsing_free_color(
+			t_game *game,
+			char *color_rgb,
+			t_fds fd,
+			char *error_msg);
 int		parsing_count_digits(char *color_rgb, int *i);
 
 // parsing_free.c
@@ -441,8 +445,12 @@ int		parsing_count_digits(char *color_rgb, int *i);
 void	parsing_free(t_game *game);
 void	parsing_free_textures(t_game *game);
 int		parsing_clean_end(t_game *game);
-void	parsing_exit_error(t_game *game);
-void	parsing_free_test_map(t_game *game, t_map *test_map, int success);
+void	parsing_exit_error(t_game *game, char *error_msg);
+void	parsing_free_test_map(
+			t_game *game,
+			t_map *test_map,
+			int success,
+			char *error_msg);
 
 // parsing_textures.c
 
@@ -452,7 +460,7 @@ void	parsing_textures(t_game *game, t_fds fd);
 void	allocate_data_texture(t_game *game, t_texture *face, char *texture_path,
 			t_fds fd);
 void	parsing_free_error_textures(t_game *game, t_fds fd,
-			char *buffer);
+			char *buffer, int error_code);
 
 // parsing_utils.c
 
