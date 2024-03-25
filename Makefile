@@ -6,7 +6,7 @@
 #    By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 18:08:42 by rcutte            #+#    #+#              #
-#    Updated: 2024/03/25 13:52:02 by rcutte           ###   ########.fr        #
+#    Updated: 2024/03/25 15:19:09 by rcutte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -217,7 +217,7 @@ re: re_msg fclean all
 
 ####################### Tests ########################
 
-ARGS = ./assets/maps/small.cub
+ARGS = ./assets/maps/small-stone.cub
 
 exec: all exec_msg
 	@./$(NAME) $(ARGS)

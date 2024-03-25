@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:42:01 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/21 13:45:01 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/25 15:13:11 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,18 +135,6 @@ void	raycasting(t_game *game)
 		calculate_line_params(&ray);
 		find_wall_texture(game, &ray);
 		draw_texture_line(game, &ray);
-
-		// Color Only
-		// find_wall_color(game, &ray);
-		// draw_vertical_line(
-		// 	&game->img, (t_point){x, ray.draw_start},
-		// 	(t_point){x, ray.draw_end}, ray.color);
-		// draw_vertical_line(
-		// 	&game->img, (t_point){x, 0},
-		// 	(t_point){x, ray.draw_start}, game->textures.ceiling_color);
-		// draw_vertical_line(
-		// 	&game->img, (t_point){x, ray.draw_end},
-		// 	(t_point){x, HEIGHT}, game->textures.floor_color);
 		x++;
 	}
 }
