@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 16:28:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/25 15:27:15 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/25 19:09:22 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
  * @param ray The ray struct
  * @param y The y coordinate
  * @param x The x coordinate
+ * @note The tex_step is calculated based on the height of the texture, it is
+ * used to draw the texture at scale
+ * @note We use 1.0 to get a float value of the tex_step
  * @note The tex_y is calculated based on the tex_coord and the height of the
  * texture, a mask is applied to prevent overflow - & (texture->height - 1)
  * will truncate every value greater than the height of the texture
@@ -103,5 +106,5 @@ void	draw_texture_line(t_game *game, t_ray *ray)
 	x = ray->x;
 	draw_ceiling(game, ray, &y, x);
 	draw_wall(game, ray, &y, x);
-	draw_floor(game, &y, x);
+	draw_floor(game,	 &y, x);
 }
