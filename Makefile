@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+         #
+#    By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 18:08:42 by rcutte            #+#    #+#              #
-#    Updated: 2024/03/22 10:23:44 by abourgeo         ###   ########.fr        #
+#    Updated: 2024/03/25 13:52:02 by rcutte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -217,7 +217,7 @@ re: re_msg fclean all
 
 ####################### Tests ########################
 
-ARGS = 
+ARGS = ./assets/maps/small.cub
 
 exec: all exec_msg
 	@./$(NAME) $(ARGS)

@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 17:49:34 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/20 20:21:54 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/25 11:54:12 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ void	find_tile_side_x(t_game *game, t_ray *ray)
 	else
 	{
 		if (ray->step_y < 0)
-			ray->texture = &game->textures.north;
-		else
 			ray->texture = &game->textures.south;
+		else
+			ray->texture = &game->textures.north;
 		ray->wall_x = game->player.pos_x + ray->perp_wall_dist
 			* ray->ray_dir_x;
 	}
