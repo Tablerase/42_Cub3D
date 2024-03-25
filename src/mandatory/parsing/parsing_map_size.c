@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 21:09:33 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/22 09:05:53 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/25 11:33:05 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*right_trim_gnl(t_game *game, t_fds fd)
 		if (fd.fd1 != -1)
 			close(fd.fd1);
 		close(fd.fd2);
-		parsing_exit_error(game);
+		parsing_exit_error(game, "Buffer allocation failed\n");
 	}
 	return (trimed_buffer);
 }
@@ -92,7 +92,7 @@ void	parsing_check_if_end_of_map(t_game *game, t_fds fd, char *prev_buffer)
 			free(buffer);
 			close(fd.fd1);
 			close(fd.fd2);
-			parsing_exit_error(game);
+			parsing_exit_error(game, "Newline inside map\n");
 		}
 		free(buffer);
 		buffer = right_trim_gnl(game, fd);

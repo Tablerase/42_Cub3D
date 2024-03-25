@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:15:20 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/22 10:34:10 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/25 12:04:50 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	parsing_fill_submap(t_game *game, char *buffer, int i, t_fds fd)
 		{
 			free(buffer);
 			close(fd.fd2);
-			parsing_exit_error(game);
+			parsing_exit_error(game, "Invalid map character\n");
 		}
 		j++;
 	}
@@ -54,7 +54,7 @@ void	parsing_collect_map(t_game *game, t_fds fd)
 	if (buffer == NULL)
 	{
 		close(fd.fd2);
-		parsing_exit_error(game);
+		parsing_exit_error(game, "Empty map\n");
 	}
 	i = 0;
 	while (buffer != NULL && i < game->map.height)

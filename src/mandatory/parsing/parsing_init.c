@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:56:36 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/22 08:19:32 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/25 11:35:31 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	parsing_init(t_game *game)
 	parsing_init_textures(game);
 	game->mlx.mlx = mlx_init();
 	if (game->mlx.mlx == NULL)
-		parsing_exit_error(game);
+		parsing_exit_error(game, "mlx_init() failed\n");
 	game->player.pos_x = -1;
 	game->player.pos_y = -1;
 }
@@ -60,7 +60,7 @@ void	parsing_init_test_map(t_game *game, t_map *test_map)
 	test_map->width = game->map.width;
 	test_map->map = malloc((test_map->height + 1) * sizeof(enum e_tile *));
 	if (test_map->map == NULL)
-		parsing_exit_error(game);
+		parsing_exit_error(game, "Test map allocation failed\n");
 	while (i < game->map.height)
 	{
 		test_map->map[i] = malloc(test_map->width * sizeof(enum e_tile));
@@ -69,7 +69,7 @@ void	parsing_init_test_map(t_game *game, t_map *test_map)
 			while (--i >= 0)
 				free(test_map->map[i]);
 			free(test_map->map);
-			parsing_exit_error(game);
+			parsing_exit_error(game, "Sub test map allocation failed\n");
 		}
 		i++;
 	}

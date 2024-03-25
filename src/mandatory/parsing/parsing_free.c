@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:40:21 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/18 13:13:18 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/25 12:09:01 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,20 @@ int	parsing_clean_end(t_game *game)
 	exit(0);
 }
 
-void	parsing_exit_error(t_game *game)
+void	parsing_exit_error(t_game *game, char *error_msg)
 {
 	parsing_free(game);
 	write(2, "Error\n", 6);
+	if (error_msg != NULL)
+		write(2, error_msg, ft_strlen(error_msg));
 	exit(1);
 }
 
-void	parsing_free_test_map(t_game *game, t_map *test_map, int success)
+void	parsing_free_test_map(
+			t_game *game,
+			t_map *test_map,
+			int success,
+			char *error_msg)
 {
 	int	i;
 
@@ -79,5 +85,5 @@ void	parsing_free_test_map(t_game *game, t_map *test_map, int success)
 		free(test_map->map[i++]);
 	free(test_map->map);
 	if (success == 0)
-		parsing_exit_error(game);
+		parsing_exit_error(game, error_msg);
 }

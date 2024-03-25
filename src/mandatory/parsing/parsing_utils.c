@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:43:43 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/22 09:11:51 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/25 12:17:14 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ char	*trimed_gnl(t_game *game, t_fds fd, const char *to_trim)
 	trimed_buffer = ft_strtrim(temp_buffer, to_trim);
 	free(temp_buffer);
 	if (trimed_buffer == NULL)
-		parsing_free_error_textures(game, fd, NULL);
+		parsing_free_error_textures(game, fd, NULL, 4);
 	temp_buffer = get_next_line(fd.fd2);
 	if (temp_buffer == NULL)
-		parsing_free_error_textures(game, fd, trimed_buffer);
+		parsing_free_error_textures(game, fd, trimed_buffer, 4);
 	free(temp_buffer);
 	return (trimed_buffer);
 }
@@ -71,17 +71,23 @@ char	*parsing_found_identifier(char *buffer, t_count_id *nb_textures)
 {
 	if (ft_strlen(buffer) < 2)
 		return (NULL);
-	if (ft_strncmp(buffer, "NO", 2) == 0 && buffer[2] == ' ')
+	if (ft_strncmp(buffer, "NO", 2) == 0
+		&& (buffer[2] == ' ' || buffer[2] == '\0'))
 		return (parsing_add_count(nb_textures, "NO"));
-	if (ft_strncmp(buffer, "SO", 2) == 0 && buffer[2] == ' ')
+	if (ft_strncmp(buffer, "SO", 2) == 0
+		&& (buffer[2] == ' ' || buffer[2] == '\0'))
 		return (parsing_add_count(nb_textures, "SO"));
-	if (ft_strncmp(buffer, "WE", 2) == 0 && buffer[2] == ' ')
+	if (ft_strncmp(buffer, "WE", 2) == 0
+		&& (buffer[2] == ' ' || buffer[2] == '\0'))
 		return (parsing_add_count(nb_textures, "WE"));
-	if (ft_strncmp(buffer, "EA", 2) == 0 && buffer[2] == ' ')
+	if (ft_strncmp(buffer, "EA", 2) == 0
+		&& (buffer[2] == ' ' || buffer[2] == '\0'))
 		return (parsing_add_count(nb_textures, "EA"));
-	if (ft_strncmp(buffer, "F", 1) == 0 && buffer[1] == ' ')
+	if (ft_strncmp(buffer, "F", 1) == 0
+		&& (buffer[1] == ' ' || buffer[1] == '\0'))
 		return (parsing_add_count(nb_textures, "F"));
-	if (ft_strncmp(buffer, "C", 1) == 0 && buffer[1] == ' ')
+	if (ft_strncmp(buffer, "C", 1) == 0
+		&& (buffer[1] == ' ' || buffer[1] == '\0'))
 		return (parsing_add_count(nb_textures, "C"));
 	return (NULL);
 }

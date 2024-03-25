@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:10:50 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/22 09:05:41 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/25 11:47:52 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_edge(t_map map, int i, int j)
 {
-	if (i == 0 || j == 0 || i == map.height || j == map.width)
+	if (i == 0 || j == 0 || i == map.height - 1 || j == map.width - 1)
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:13:02 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/22 10:01:43 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/25 12:14:57 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,18 @@ void	ft_setup_img(t_game *game)
 {
 	game->img.img = mlx_new_image(game->mlx.mlx, WIDTH, HEIGHT);
 	if (!game->img.img)
-		parsing_exit_error(game);
+		parsing_exit_error(game, "mlx_new_image() failed\n");
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bpp,
 			&game->img.line_len, &game->img.endian);
 	if (!game->img.addr)
-		parsing_exit_error(game);
+		parsing_exit_error(game, "mlx_get_data_addr() failed\n");
 }
 
 void	ft_setup_window(t_game *game)
 {
 	game->mlx.win = mlx_new_window(game->mlx.mlx, WIDTH, HEIGHT, "cub3d");
 	if (game->mlx.win == NULL)
-		parsing_exit_error(game);
+		parsing_exit_error(game, "mlx_new_window() failed\n");
 }
 
 int	main(int argc, char **argv)
@@ -71,7 +71,7 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	if (argc != 2)
-		parsing_exit_error(NULL);
+		parsing_exit_error(NULL, "Invalid number of arguments\n");
 	parsing_init(&game);
 	parsing(&game, argv[1]);
 	ft_setup_img(&game);
