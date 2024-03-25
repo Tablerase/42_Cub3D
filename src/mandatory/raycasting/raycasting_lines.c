@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 16:28:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/25 19:09:22 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/25 19:25:46 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,5 @@ void	draw_texture_line(t_game *game, t_ray *ray)
 	x = ray->x;
 	draw_ceiling(game, ray, &y, x);
 	draw_wall(game, ray, &y, x);
-	draw_floor(game,	 &y, x);
+	draw_floor(game, &y, x);
 }
