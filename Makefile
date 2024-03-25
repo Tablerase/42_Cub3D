@@ -6,7 +6,7 @@
 #    By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 18:08:42 by rcutte            #+#    #+#              #
-#    Updated: 2024/03/25 15:19:09 by rcutte           ###   ########.fr        #
+#    Updated: 2024/03/25 16:40:20 by rcutte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -147,7 +147,6 @@ PARSING = parsing/parsing_colors.c \
 		parsing/parsing_init.c \
 		parsing/parsing_map_valid_tiles.c \
 		parsing/parsing_colors_utils.c \
-		minimap_bonus.c \
 
 # objet libft
 OBJ = $(addprefix $(SRC_PATH)/,$(SRC:.c=.o))
@@ -156,7 +155,10 @@ OBJ = $(addprefix $(SRC_PATH)/,$(SRC:.c=.o))
 
 NAME_BONUS = program_bonus
 SRC_BONUS_PATH = ./src/bonus
-SRC_BONUS = \
+SRC_BONUS = main_bonus.c\
+			$(MINIMAP) \
+
+MINIMAP = minimap_bonus.c \
 
 OBJ_BONUS = $(addprefix $(SRC_BONUS_PATH)/,$(SRC_BONUS:.c=.o))
 
@@ -217,7 +219,7 @@ re: re_msg fclean all
 
 ####################### Tests ########################
 
-ARGS = ./assets/maps/small-stone.cub
+ARGS = ./assets/maps/mandatory/small-stone.cub
 
 exec: all exec_msg
 	@./$(NAME) $(ARGS)

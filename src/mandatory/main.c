@@ -6,13 +6,11 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:13:02 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/25 15:38:28 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/25 16:32:38 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-void	minimap(t_game *game);
 
 /**
  * @brief Function to handle the game play
@@ -25,7 +23,6 @@ int	ft_gameplay(t_game *game)
 	raycasting(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.win, game->img.img, 0, 0);
 	update_movement(game);
-	minimap(game);
 	return (0);
 }
 
