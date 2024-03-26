@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 17:05:05 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/26 12:00:05 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:39:30 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	on_click(int keycode, t_game *game)
 	if (keycode == XK_Right)
 		game->keys.key_right = PRESSED;
 	if (keycode == XK_Escape)
-		ft_exit(game);
+		parsing_clean_end(game);
 	return (1);
 }
 
@@ -96,6 +96,6 @@ void	ft_events(t_game *game)
 {
 	mlx_hook(game->mlx.win, KeyPress, KeyPressMask, &on_click, game);
 	mlx_hook(game->mlx.win, KeyRelease, KeyReleaseMask, &on_release, game);
-	mlx_hook(game->mlx.win, DestroyNotify, NoEventMask, ft_exit, game);
+	mlx_hook(game->mlx.win, DestroyNotify, NoEventMask, &parsing_clean_end, game);
 	mlx_hook(game->mlx.win, MotionNotify, PointerMotionMask, mouse_pos, game);
 }

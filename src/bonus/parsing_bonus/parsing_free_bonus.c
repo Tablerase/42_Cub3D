@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:40:21 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/26 12:00:05 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/26 21:26:50 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	parsing_free(t_game *game)
 		}
 		if (game->img.img != NULL)
 			mlx_destroy_image(game->mlx.mlx, game->img.img);
+		parsing_free_sprite(game);
 		mlx_destroy_display(game->mlx.mlx);
 		free(game->mlx.mlx);
 	}

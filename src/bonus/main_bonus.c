@@ -6,11 +6,37 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:13:02 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/26 12:03:26 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:31:55 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
+
+void	put_sprite(t_game *game)
+{
+	char	*dest_sprite;
+	char	*dest;
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < game->sprite.img->on_screen->img.height)
+	{
+		j = 0;
+		while (j < game->sprite.img->on_screen->img.width)
+		{
+			dest_sprite = game->sprite.img->on_screen->img.img.addr
+				+ (j * game->sprite.img->on_screen->img.img.line_len
+					+ i * (game->sprite.img->on_screen->img.img.bpp / 8));
+			dest = game->img.addr + (j * game->img.line_len
+					+ (i + WIDTH - 128) * (game->img.bpp / 8));
+			if (*(unsigned int *)dest_sprite != 0x00FF00)
+				*(unsigned int *)dest = *(unsigned int *)dest_sprite;
+			j++;
+		}
+		i++;
+	}
+}
 
 /**
  * @brief Function to handle the game play
@@ -20,7 +46,18 @@
 */
 int	ft_gameplay(t_game *game)
 {
+	static int	time;
+
+	time++;
 	raycasting(game);
+	if (time > 10)
+	{
+		time = 0;
+		game->sprite.img->on_screen->is_on_screen = false;
+		game->sprite.img->on_screen = game->sprite.img->on_screen->next;
+		game->sprite.img->on_screen->is_on_screen = true;
+	}
+	put_sprite(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.win, game->img.img, 0, 0);
 	update_movement(game);
 	minimap(game);
@@ -36,6 +73,23 @@ void	ft_setup_img(t_game *game)
 			&game->img.line_len, &game->img.endian);
 	if (!game->img.addr)
 		parsing_exit_error(game, "mlx_get_data_addr() failed\n");
+	if (game->sprite.nb_sprites == 0)
+		return ;
+	game->sprite.z_buffer = malloc(WIDTH * sizeof(double));
+	if (game->sprite.z_buffer == NULL)
+		parsing_exit_error(game, "Allocation failed\n");
+	ft_bzero(game->sprite.z_buffer, sizeof(game->sprite.z_buffer));
+	game->sprite.sprite_order = malloc((game->sprite.nb_sprites + 1)
+		* sizeof(int));
+	if (game->sprite.sprite_order == NULL)
+		parsing_exit_error(game, "Allocation failed\n");
+	ft_bzero(game->sprite.sprite_order, sizeof(game->sprite.sprite_order));
+	game->sprite.sprite_distance = malloc((game->sprite.nb_sprites + 1)
+		* sizeof(double));
+	if (game->sprite.sprite_distance == NULL)
+		parsing_exit_error(game, "Allocation failed\n");
+	ft_bzero(game->sprite.sprite_distance,
+		sizeof(game->sprite.sprite_distance));
 }
 
 void	ft_setup_window(t_game *game)
