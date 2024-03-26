@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_rotations_bonus.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 18:25:50 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/26 12:00:05 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:14:06 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,20 @@ void	rotate_right(t_game *game)
 		- game->player.plane_y * sin(-rot_speed);
 	game->player.plane_y = old_plane_x * sin(-rot_speed)
 		+ game->player.plane_y * cos(-rot_speed);
+}
+
+/**
+ * @brief Function to handle the mouse rotations
+ * @param game The game struct
+ * @note Check if the mouse is on the left or right side of the screen
+ * and rotate the player accordingly
+ * @note The deadzone is set to WIDTH / 10 to prevent the player from
+ * rotating too fast
+*/
+void	mouse_rotations(t_game *game)
+{
+	if (game->mouse_x < WIDTH / 2 - WIDTH / 10)
+		rotate_left(game);
+	if (game->mouse_x > WIDTH / 2 + WIDTH / 10)
+		rotate_right(game);
 }

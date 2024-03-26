@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_movements_bonus.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 18:08:24 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/26 12:00:05 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:13:10 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * @note increment the position of the player according to vector direction
  * with the move_speed
 */
-static void	move_forward(t_game *game)
+void	move_forward(t_game *game)
 {
 	if (game->map.map[(int)game->player.pos_y][(int)(game->player.pos_x
 		+ game->player.dir_x * game->player.move_speed)] == GROUND)
@@ -40,7 +40,7 @@ static void	move_forward(t_game *game)
  * @note decrement the position of the player according to vector direction
  * with the move_speed
 */
-static void	move_backward(t_game *game)
+void	move_backward(t_game *game)
 {
 	if (game->map.map[(int)game->player.pos_y][(int)(game->player.pos_x
 		- game->player.dir_x * game->player.move_speed)] == GROUND)
@@ -61,7 +61,7 @@ static void	move_backward(t_game *game)
  * @note decrement the position of the player according to the plane vector
  * (horizontal to dir of player) with the move_speed
 */
-static void	move_left(t_game *game)
+void	move_left(t_game *game)
 {
 	if (game->map.map[(int)game->player.pos_y][(int)(game->player.pos_x
 		- game->player.plane_x * game->player.move_speed)] == GROUND)
@@ -82,7 +82,7 @@ static void	move_left(t_game *game)
  * @note increment the position of the player according to the plane vector
  * (horizontal to dir of player) with the move_speed
 */
-static void	move_right(t_game *game)
+void	move_right(t_game *game)
 {
 	if (game->map.map[(int)game->player.pos_y][(int)(game->player.pos_x
 		+ game->player.plane_x * game->player.move_speed)] == GROUND)
@@ -96,6 +96,12 @@ static void	move_right(t_game *game)
 	}
 }
 
+/**
+ * @brief Function to update the movement of the player
+ * @param game The game struct
+ * @note Check if the keys are pressed or if the mouse is moved
+ * and update the movement of the player accordingly
+*/
 void	update_movement(t_game *game)
 {
 	if (game->keys.key_w)
@@ -110,4 +116,5 @@ void	update_movement(t_game *game)
 		rotate_left(game);
 	if (game->keys.key_right)
 		rotate_right(game);
+	mouse_rotations(game);
 }

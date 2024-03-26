@@ -6,7 +6,7 @@
 #    By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 18:08:42 by rcutte            #+#    #+#              #
-#    Updated: 2024/03/26 12:21:48 by rcutte           ###   ########.fr        #
+#    Updated: 2024/03/26 13:53:03 by rcutte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -175,8 +175,7 @@ RAYCASTING_BONUS = raycasting_bonus/raycasting_bonus.c \
 					raycasting_bonus/raycasting_movements_bonus.c \
 					raycasting_bonus/raycasting_rotations_bonus.c \
 
-GRAPHICS_BONUS = graphics_bonus/graphics_server_bonus.c \
-				graphics_bonus/colors_bonus.c \
+GRAPHICS_BONUS = graphics_bonus/colors_bonus.c \
 				graphics_bonus/graphics_pixel_bonus.c \
 				graphics_bonus/graphics_shapes_bonus.c \
 				graphics_bonus/graphics_shapes_lines_bonus.c \
@@ -265,7 +264,7 @@ exec: all exec_msg
 
 ARGS_BONUS = ./assets/maps/bonus/small_stone_bonus.cub
 
-exec_bonus: clean bonus exec_msg
+exec_bonus: bonus exec_msg
 	@./$(NAME_BONUS) $(ARGS_BONUS)
 
 ###################### Valgrind/Debug ######################
@@ -297,12 +296,13 @@ lldb_bonus: clean bonus
 ################### Special Target ###################
 
 .PHONY: all clean fclean re \
-	bonus rebonus exec exec_bonus valgrind \
+	bonus rebonus exec exec_bonus valgrind valgrind_bonus\
 	lib_clean lib_fclean lldb lldb_bonus
 
 .SILENT: $(NAME) $(NAME_BONUS) $(OBJ) $(OBJ_BONUS) $(LIBFT) bonus
 
 ###################### Messages ######################
+
 compile_msg:
 	@echo "$(COMPILED)\
 	╭──────────────────────────────────────────────────╮\n\

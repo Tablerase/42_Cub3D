@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_handlers_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 17:05:05 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/26 12:00:05 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:45:59 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	on_click(int keycode, t_game *game)
 		game->keys.key_right = PRESSED;
 	if (keycode == XK_Escape)
 		ft_exit(game);
-	return (1);
+	return (0);
 }
 
 int	on_release(int keycode, t_game *game)
@@ -68,7 +68,7 @@ int	on_release(int keycode, t_game *game)
 		game->keys.key_left = RELEASED;
 	if (keycode == XK_Right)
 		game->keys.key_right = RELEASED;
-	return (1);
+	return (0);
 }
 
 /**

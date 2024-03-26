@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:25:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/26 12:05:39 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:03:58 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -319,10 +319,7 @@ typedef struct s_game
 
 // Setup
 
-bool	ft_setup_textures(t_game *game);
-bool	ft_setup_map(t_game *game);
 bool	ft_setup_player(t_game *game);
-bool	ft_setup(t_game *game);
 
 // Graphics
 
@@ -344,6 +341,11 @@ void	find_wall_color(t_game *game, t_ray *ray);
 void	update_movement(t_game *game);
 void	rotate_left(t_game *game);
 void	rotate_right(t_game *game);
+void	move_forward(t_game *game);
+void	move_backward(t_game *game);
+void	move_left(t_game *game);
+void	move_right(t_game *game);
+void	mouse_rotations(t_game *game);
 
 // Pixel
 
@@ -480,6 +482,8 @@ void	parsing_init_test_map(t_game *game, t_map *test_map);
 
 void	parsing_file_name_and_format(t_game *game, char *filename);
 void	parsing(t_game *game, char *filename);
+
+/* ################################ MINIMAP ################################ */
 
 void	minimap(t_game *game);
 
