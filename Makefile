@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+         #
+#    By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 18:08:42 by rcutte            #+#    #+#              #
-#    Updated: 2024/03/26 12:13:30 by abourgeo         ###   ########.fr        #
+#    Updated: 2024/03/26 12:21:48 by rcutte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -197,7 +197,7 @@ PARSING_BONUS = parsing_bonus/parsing_colors_bonus.c \
 		parsing_bonus/parsing_map_valid_tiles_bonus.c \
 		parsing_bonus/parsing_colors_utils_bonus.c \
 
-MINIMAP = minimap_bonus.c \
+MINIMAP = minimap/minimap_bonus.c \
 
 OBJ_BONUS = $(addprefix $(SRC_BONUS_PATH)/,$(SRC_BONUS:.c=.o))
 
@@ -258,12 +258,12 @@ re: re_msg fclean all
 
 ####################### Tests ########################
 
-ARGS = ./assets/maps/mandatory/small-stone.cub
+ARGS = ./assets/maps/mandatory/small_stone.cub
 
 exec: all exec_msg
 	@./$(NAME) $(ARGS)
 
-ARGS_BONUS = 
+ARGS_BONUS = ./assets/maps/bonus/small_stone_bonus.cub
 
 exec_bonus: clean bonus exec_msg
 	@./$(NAME_BONUS) $(ARGS_BONUS)
@@ -279,11 +279,20 @@ valgrind_fd: clean all
 	--trace-children=yes --track-fds=yes \
 	./$(NAME) $(ARGS)
 
+valgrind_bonus: clean bonus
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s \
+	./$(NAME_BONUS) $(ARGS_BONUS)
+
+valgrind_fd_bonus: clean bonus
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s \
+	--trace-children=yes --track-fds=yes \
+	./$(NAME_BONUS) $(ARGS_BONUS)
+
 lldb: clean all
 	@lldb ./$(NAME) $(ARGS)
 
-# lldb_bonus: clean bonus
-# 	@lldb ./$(NAME_BONUS) $(ARGS_BONUS)
+lldb_bonus: clean bonus
+	@lldb ./$(NAME_BONUS) $(ARGS_BONUS)
 
 ################### Special Target ###################
 
