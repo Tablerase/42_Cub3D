@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 08:58:28 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/26 12:00:05 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:17:19 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ void	minimap_cell_color(t_game *game, t_minimap *m, int i, int j)
 					+ (m->pixel_y * game->img.line_len + m->pixel_x
 						* (game->img.bpp / 8))));
 	}
-	else if (game->map.map[i][j] == DOOR)
+	else if (game->map.map[i][j] == DOOR_CLOSED)
 		m->color = 0x468499;
+	else if (game->map.map[i][j] == DOOR_OPEN)
+		m->color = 0x468499 / 2;
 	else if (game->map.map[i][j] == GROUND)
 		m->color = C_CLEAR_BROWN;
 	else if (game->map.map[i][j] == WALL)
