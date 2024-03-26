@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 18:25:50 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/26 14:14:06 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/26 14:34:20 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,29 @@ void	rotate_right(t_game *game)
  * @param game The game struct
  * @note Check if the mouse is on the left or right side of the screen
  * and rotate the player accordingly
- * @note The deadzone is set to WIDTH / 10 to prevent the player from
+ * @note The deadzone is set to WIDTH / 10
+ * @note The player will rotate every 4 frames to prevent the player from
  * rotating too fast
 */
 void	mouse_rotations(t_game *game)
 {
-	if (game->mouse_x < WIDTH / 2 - WIDTH / 10)
-		rotate_left(game);
-	if (game->mouse_x > WIDTH / 2 + WIDTH / 10)
-		rotate_right(game);
+	static int	move_count = 0;
+	int			deadzone;
+	int			middle;
+
+	deadzone = WIDTH / 10;
+	middle = WIDTH / 2;
+	if (move_count < 4)
+	{
+		move_count++;
+		return ;
+	}
+	else
+	{
+		if (game->mouse_x < middle - deadzone)
+			rotate_left(game);
+		if (game->mouse_x > middle + deadzone)
+			rotate_right(game);
+		move_count = 0;
+	}
 }
