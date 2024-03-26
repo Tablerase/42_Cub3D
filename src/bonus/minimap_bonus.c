@@ -6,11 +6,11 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 08:58:28 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/22 11:35:58 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/26 12:00:05 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../include/cub3d_bonus.h"
 
 int	transparency(int alpha, int color, int background_color)
 {

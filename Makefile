@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+         #
+#    By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 18:08:42 by rcutte            #+#    #+#              #
-#    Updated: 2024/03/25 16:40:20 by rcutte           ###   ########.fr        #
+#    Updated: 2024/03/26 12:13:30 by abourgeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -153,10 +153,49 @@ OBJ = $(addprefix $(SRC_PATH)/,$(SRC:.c=.o))
 
 ###################### Bonus ########################
 
-NAME_BONUS = program_bonus
+NAME_BONUS = cub3D_bonus
 SRC_BONUS_PATH = ./src/bonus
 SRC_BONUS = main_bonus.c\
 			$(MINIMAP) \
+			$(PARSING_BONUS) \
+			$(UTILS_BONUS) \
+			$(DATA_BONUS) \
+			$(EVENTS_BONUS) \
+			$(RAYCASTING_BONUS) \
+			$(GRAPHICS_BONUS) \
+
+UTILS_BONUS = utils_bonus/mem_free_bonus.c \
+
+DATA_BONUS = data_bonus/player_init_bonus.c \
+
+RAYCASTING_BONUS = raycasting_bonus/raycasting_bonus.c \
+					raycasting_bonus/raycasting_params_bonus.c \
+					raycasting_bonus/raycasting_lines_bonus.c \
+					raycasting_bonus/raycasting_textures_bonus.c \
+					raycasting_bonus/raycasting_movements_bonus.c \
+					raycasting_bonus/raycasting_rotations_bonus.c \
+
+GRAPHICS_BONUS = graphics_bonus/graphics_server_bonus.c \
+				graphics_bonus/colors_bonus.c \
+				graphics_bonus/graphics_pixel_bonus.c \
+				graphics_bonus/graphics_shapes_bonus.c \
+				graphics_bonus/graphics_shapes_lines_bonus.c \
+
+EVENTS_BONUS = events_bonus/event_handlers_bonus.c \
+
+PARSING_BONUS = parsing_bonus/parsing_colors_bonus.c \
+		parsing_bonus/parsing_map_bonus.c \
+		parsing_bonus/parsing_free_bonus.c \
+		parsing_bonus/parsing_textures_bonus.c \
+		parsing_bonus/parsing_utils_bonus.c \
+		parsing_bonus/parsing_bonus.c \
+		parsing_bonus/parsing_map_collect_bonus.c \
+		parsing_bonus/parsing_map_size_bonus.c \
+		parsing_bonus/parsing_map_utils_bonus.c \
+		parsing_bonus/parsing_init_player_direction_bonus.c \
+		parsing_bonus/parsing_init_bonus.c \
+		parsing_bonus/parsing_map_valid_tiles_bonus.c \
+		parsing_bonus/parsing_colors_utils_bonus.c \
 
 MINIMAP = minimap_bonus.c \
 
@@ -252,7 +291,7 @@ lldb: clean all
 	bonus rebonus exec exec_bonus valgrind \
 	lib_clean lib_fclean lldb lldb_bonus
 
-.SILENT: $(NAME) $(OBJ) $(OBJ_BONUS) $(LIBFT) bonus
+.SILENT: $(NAME) $(NAME_BONUS) $(OBJ) $(OBJ_BONUS) $(LIBFT) bonus
 
 ###################### Messages ######################
 compile_msg:
