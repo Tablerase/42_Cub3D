@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:25:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/26 14:03:58 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/26 15:11:21 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,18 @@ enum e_key
 
 /**
  * @brief Enum for the tiles
- * @param EMPTY The empty tile
+ * @param GROUND The ground tile
  * @param WALL The wall tile
+ * @param DOOR_CLOSED The closed door tile
+ * @param DOOR_OPEN The open door tile
+ * @param EMPTY The empty tile
 */
 enum e_tile
 {
 	GROUND,
 	WALL,
-	DOOR,
+	DOOR_CLOSED,
+	DOOR_OPEN,
 	EMPTY
 };
 
@@ -330,10 +334,12 @@ void	calculate_perp_wall_dist(t_ray *ray);
 void	calculate_line_params(t_ray *ray);
 
 	// Textures
+
 void	find_wall_texture(t_game *game, t_ray *ray);
 void	draw_texture_line(t_game *game, t_ray *ray);
 
 	// Simple color
+
 void	find_wall_color(t_game *game, t_ray *ray);
 
 // Movement
@@ -367,6 +373,11 @@ void	ft_events(t_game *game);
 
 void	ft_free_all(t_game *game);
 int		ft_exit(t_game *game);
+
+
+/* ################################ MINIMAP ################################ */
+
+void	minimap(t_game *game);
 
 /* ################################ SHAPES ################################# */
 
@@ -482,9 +493,5 @@ void	parsing_init_test_map(t_game *game, t_map *test_map);
 
 void	parsing_file_name_and_format(t_game *game, char *filename);
 void	parsing(t_game *game, char *filename);
-
-/* ################################ MINIMAP ################################ */
-
-void	minimap(t_game *game);
 
 #endif
