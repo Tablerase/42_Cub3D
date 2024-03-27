@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+         #
+#    By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 18:08:42 by rcutte            #+#    #+#              #
-#    Updated: 2024/03/27 13:01:40 by rcutte           ###   ########.fr        #
+#    Updated: 2024/03/27 13:32:27 by abourgeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -163,6 +163,7 @@ SRC_BONUS = main_bonus.c\
 			$(EVENTS_BONUS) \
 			$(RAYCASTING_BONUS) \
 			$(GRAPHICS_BONUS) \
+			$(SPRITES) \
 
 UTILS_BONUS = utils_bonus/mem_free_bonus.c \
 
@@ -198,7 +199,13 @@ PARSING_BONUS = parsing_bonus/parsing_colors_bonus.c \
 		parsing_bonus/parsing_map_valid_tiles_bonus.c \
 		parsing_bonus/parsing_colors_utils_bonus.c \
 
-MINIMAP = minimap/minimap_bonus.c \
+MINIMAP = minimap_bonus.c \
+			minimap_utils_bonus.c \
+
+SPRITES = sprites_bonus/sprites_create_list_bonus.c \
+		sprites_bonus/sprites_display_sprite_bonus.c \
+		sprites_bonus/sprites_utils_bonus.c \
+		sprites_bonus/sprites_calculation_bonus.c \
 
 OBJ_BONUS = $(addprefix $(SRC_BONUS_PATH)/,$(SRC_BONUS:.c=.o))
 

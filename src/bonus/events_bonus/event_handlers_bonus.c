@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_handlers_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 17:05:05 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/27 12:59:48 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/27 13:33:01 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int	on_click(int keycode, t_game *game)
 	if (keycode == XK_h)
 		game->keys.key_h = PRESSED;
 	if (keycode == XK_Escape)
-		ft_exit(game);
-	return (0);
+		parsing_clean_end(game);
+	return (1);
 }
 
 int	on_release(int keycode, t_game *game)
@@ -93,6 +93,7 @@ void	ft_events(t_game *game)
 {
 	mlx_hook(game->mlx.win, KeyPress, KeyPressMask, &on_click, game);
 	mlx_hook(game->mlx.win, KeyRelease, KeyReleaseMask, &on_release, game);
-	mlx_hook(game->mlx.win, DestroyNotify, NoEventMask, ft_exit, game);
+	mlx_hook(game->mlx.win, DestroyNotify, NoEventMask, &parsing_clean_end,
+		game);
 	mlx_hook(game->mlx.win, MotionNotify, PointerMotionMask, mouse_pos, game);
 }

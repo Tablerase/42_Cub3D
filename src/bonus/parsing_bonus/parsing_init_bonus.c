@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:56:36 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/26 12:00:05 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 10:09:57 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	parsing_init(t_game *game)
 	game->map.height = 0;
 	game->map.width = 0;
 	parsing_init_textures(game);
+	parsing_init_sprite(game);
 	game->mlx.mlx = mlx_init();
 	if (game->mlx.mlx == NULL)
 		parsing_exit_error(game, "mlx_init() failed\n");
@@ -74,4 +75,24 @@ void	parsing_init_test_map(t_game *game, t_map *test_map)
 		i++;
 	}
 	test_map->map[i] = NULL;
+}
+
+void	parsing_init_sprite(t_game *game)
+{
+	game->sprite.sprite_x = 0;
+	game->sprite.sprite_y = 0;
+	game->sprite.inv_det = 0;
+	game->sprite.transform_x = 0;
+	game->sprite.transform_y = 0;
+	game->sprite.sprite_screen_x = 0;
+	game->sprite.sprite_height = 0;
+	game->sprite.sprite_width = 0;
+	game->sprite.tex_x = 0;
+	game->sprite.tex_y = 0;
+	game->sprite.nb_sprites = 0;
+	game->sprite.img = NULL;
+	game->sprite.z_buffer = NULL;
+	game->sprite.sprite_order = NULL;
+	game->sprite.sprite_distance = NULL;
+	game->sprite.sprite_pos = NULL;
 }
