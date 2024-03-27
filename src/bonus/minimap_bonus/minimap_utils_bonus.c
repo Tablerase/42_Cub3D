@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 12:58:03 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/27 13:01:41 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:56:50 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,22 @@ bool	minimap_sprite_and_border(
 			|| x == m->pixel_x + nb_pixel_per_cell - 1
 			|| y == m->pixel_y || y == m->pixel_y + nb_pixel_per_cell - 1))
 		return (true);
+	return (false);
+}
+
+bool	minimap_door_and_border(
+			t_minimap *m,
+			int x,
+			int y,
+			int nb_pixel_per_cell)
+{
+	if (m->color == C_RED)
+	{
+		if (y - m->pixel_y == x - m->pixel_x
+			|| y - m->pixel_y + x - m->pixel_x == nb_pixel_per_cell - 1)
+			return (false);
+		return (true);
+	}
 	return (false);
 }
 
