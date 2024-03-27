@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:42:01 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/26 12:00:05 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:33:33 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,8 @@ static void	dda_algorithm(t_game *game, t_ray *ray)
 			ray->map_y += ray->step_y;
 			ray->side = EW;
 		}
-		if (game->map.map[ray->map_y][ray->map_x] == WALL)
+		if (game->map.map[ray->map_y][ray->map_x] == WALL
+			|| game->map.map[ray->map_y][ray->map_x] == DOOR_CLOSED)
 			ray->hit = true;
 	}
 }

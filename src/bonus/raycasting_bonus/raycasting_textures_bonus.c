@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_textures_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 17:49:34 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/26 12:00:05 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:42:17 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,14 @@ void	find_tile_side_x(t_game *game, t_ray *ray)
 	ray->wall_x -= floor(ray->wall_x);
 }
 
+void	check_door_texture(t_game *game, t_ray *ray)
+{
+	if (ray->tile == DOOR_CLOSED)
+	{
+		ray->texture = &game->textures.door;
+	}
+}
+
 /**
  * @brief Find the wall texture
  * @param game The game struct
@@ -80,5 +88,6 @@ void	find_wall_texture(t_game *game, t_ray *ray)
 {
 	ray->tile = game->map.map[ray->map_y][ray->map_x];
 	find_tile_side_x(game, ray);
+	check_door_texture(game, ray);
 	find_tile_texture(ray);
 }

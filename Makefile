@@ -6,7 +6,7 @@
 #    By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 18:08:42 by rcutte            #+#    #+#              #
-#    Updated: 2024/03/26 14:46:48 by rcutte           ###   ########.fr        #
+#    Updated: 2024/03/27 12:36:00 by rcutte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -167,6 +167,7 @@ SRC_BONUS = main_bonus.c\
 UTILS_BONUS = utils_bonus/mem_free_bonus.c \
 
 DATA_BONUS = data_bonus/player_init_bonus.c \
+			data_bonus/door_sprite_bonus.c \
 
 RAYCASTING_BONUS = raycasting_bonus/raycasting_bonus.c \
 					raycasting_bonus/raycasting_params_bonus.c \

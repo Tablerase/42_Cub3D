@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:25:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/27 11:37:41 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/27 12:34:50 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,6 +220,7 @@ typedef struct s_texture
  * @param south The south texture
  * @param east The east texture
  * @param west The west texture
+ * @param door The door texture
  * @param floor_color The floor color
  * @param ceiling_color The ceiling color
 */
@@ -229,6 +230,7 @@ typedef struct s_textures
 	t_texture	south;
 	t_texture	east;
 	t_texture	west;
+	t_texture	door;
 	int			floor_color;
 	int			ceiling_color;
 }	t_textures;
@@ -326,6 +328,7 @@ typedef struct s_game
 // Setup
 
 bool	ft_setup_player(t_game *game);
+void	ft_setup_door_and_sprite(t_game *game);
 
 // Graphics
 

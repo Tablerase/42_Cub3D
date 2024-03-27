@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 08:58:28 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/26 19:17:19 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/27 12:48:26 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	minimap_cell_color(t_game *game, t_minimap *m, int i, int j)
 						* (game->img.bpp / 8))));
 	}
 	else if (game->map.map[i][j] == DOOR_CLOSED)
-		m->color = 0x468499;
+		m->color = C_RED;
 	else if (game->map.map[i][j] == DOOR_OPEN)
-		m->color = 0x468499 / 2;
+		m->color = C_WHITE;
 	else if (game->map.map[i][j] == GROUND)
 		m->color = C_CLEAR_BROWN;
 	else if (game->map.map[i][j] == WALL)
@@ -48,7 +48,7 @@ void	minimap_cell_color(t_game *game, t_minimap *m, int i, int j)
 	else if (game->map.map[i][j] != EMPTY)
 		m->color = C_BLUE;
 	if (j == (int)game->player.pos_x && i == (int)game->player.pos_y)
-		m->color = C_RED;
+		m->color = C_PURPLE;
 }
 
 void	minimap_cell_draw(t_game *game, t_minimap *m, int nb_pixel_per_cell)

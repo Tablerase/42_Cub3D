@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 18:08:24 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/26 14:13:10 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/27 11:55:03 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,16 @@
 void	move_forward(t_game *game)
 {
 	if (game->map.map[(int)game->player.pos_y][(int)(game->player.pos_x
-		+ game->player.dir_x * game->player.move_speed)] == GROUND)
+		+ game->player.dir_x * game->player.move_speed)] == GROUND
+		|| game->map.map[(int)game->player.pos_y][(int)(game->player.pos_x
+		+ game->player.dir_x * game->player.move_speed)] == DOOR_OPEN)
 	{
 		game->player.pos_x += game->player.dir_x * game->player.move_speed;
 	}
 	if (game->map.map[(int)(game->player.pos_y + game->player.dir_y
-			* game->player.move_speed)][(int)game->player.pos_x] == GROUND)
+			* game->player.move_speed)][(int)game->player.pos_x] == GROUND
+			|| game->map.map[(int)(game->player.pos_y + game->player.dir_y
+			* game->player.move_speed)][(int)game->player.pos_x] == DOOR_OPEN)
 	{
 		game->player.pos_y += game->player.dir_y * game->player.move_speed;
 	}
@@ -43,12 +47,16 @@ void	move_forward(t_game *game)
 void	move_backward(t_game *game)
 {
 	if (game->map.map[(int)game->player.pos_y][(int)(game->player.pos_x
-		- game->player.dir_x * game->player.move_speed)] == GROUND)
+		- game->player.dir_x * game->player.move_speed)] == GROUND
+		|| game->map.map[(int)game->player.pos_y][(int)(game->player.pos_x
+		- game->player.dir_x * game->player.move_speed)] == DOOR_OPEN)
 	{
 		game->player.pos_x -= game->player.dir_x * game->player.move_speed;
 	}
 	if (game->map.map[(int)(game->player.pos_y - game->player.dir_y
-			* game->player.move_speed)][(int)game->player.pos_x] == GROUND)
+			* game->player.move_speed)][(int)game->player.pos_x] == GROUND
+			|| game->map.map[(int)(game->player.pos_y - game->player.dir_y
+			* game->player.move_speed)][(int)game->player.pos_x] == DOOR_OPEN)
 	{
 		game->player.pos_y -= game->player.dir_y * game->player.move_speed;
 	}
@@ -64,12 +72,16 @@ void	move_backward(t_game *game)
 void	move_left(t_game *game)
 {
 	if (game->map.map[(int)game->player.pos_y][(int)(game->player.pos_x
-		- game->player.plane_x * game->player.move_speed)] == GROUND)
+		- game->player.plane_x * game->player.move_speed)] == GROUND
+		|| game->map.map[(int)game->player.pos_y][(int)(game->player.pos_x
+		- game->player.plane_x * game->player.move_speed)] == DOOR_OPEN)
 	{
 		game->player.pos_x -= game->player.plane_x * game->player.move_speed;
 	}
 	if (game->map.map[(int)(game->player.pos_y - game->player.plane_y
-			* game->player.move_speed)][(int)game->player.pos_x] == GROUND)
+			* game->player.move_speed)][(int)game->player.pos_x] == GROUND
+			|| game->map.map[(int)(game->player.pos_y - game->player.plane_y
+			* game->player.move_speed)][(int)game->player.pos_x] == DOOR_OPEN)
 	{
 		game->player.pos_y -= game->player.plane_y * game->player.move_speed;
 	}
@@ -85,12 +97,16 @@ void	move_left(t_game *game)
 void	move_right(t_game *game)
 {
 	if (game->map.map[(int)game->player.pos_y][(int)(game->player.pos_x
-		+ game->player.plane_x * game->player.move_speed)] == GROUND)
+		+ game->player.plane_x * game->player.move_speed)] == GROUND
+		|| game->map.map[(int)game->player.pos_y][(int)(game->player.pos_x
+		+ game->player.plane_x * game->player.move_speed)] == DOOR_OPEN)
 	{
 		game->player.pos_x += game->player.plane_x * game->player.move_speed;
 	}
 	if (game->map.map[(int)(game->player.pos_y + game->player.plane_y
-			* game->player.move_speed)][(int)game->player.pos_x] == GROUND)
+			* game->player.move_speed)][(int)game->player.pos_x] == GROUND
+			|| game->map.map[(int)(game->player.pos_y + game->player.plane_y
+			* game->player.move_speed)][(int)game->player.pos_x] == DOOR_OPEN)
 	{
 		game->player.pos_y += game->player.plane_y * game->player.move_speed;
 	}
