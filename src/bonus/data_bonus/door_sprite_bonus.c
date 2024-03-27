@@ -6,15 +6,15 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 12:21:14 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/27 14:48:10 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 15:35:11 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-void	ft_setup_door_and_sprite(t_game *game) // to free in parsing_exit_error
+void	ft_setup_door_and_sprite(t_game *game)
 {
-	t_texture *texture;
+	t_texture	*texture;
 
 	texture = &game->textures.door;
 	texture->path = "./assets/textures/wooden-door.xpm";

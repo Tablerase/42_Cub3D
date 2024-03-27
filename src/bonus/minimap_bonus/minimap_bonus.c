@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 08:58:28 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/27 13:34:46 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 15:36:22 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,19 @@ void	minimap_cell_color(t_game *game, t_minimap *m, int i, int j)
 					+ (m->pixel_y * game->img.line_len + m->pixel_x
 						* (game->img.bpp / 8))));
 	}
-	else if (game->map.map[i][j] == DOOR_CLOSED)
-		m->color = C_RED;
-	else if (game->map.map[i][j] == DOOR_OPEN)
-		m->color = C_WHITE;
+	else if (game->map.map[i][j] == DOOR_OPEN
+		|| game->map.map[i][j] == DOOR_CLOSED)
+		m->color = 0x468499;
 	else if (game->map.map[i][j] == GROUND)
 		m->color = C_CLEAR_BROWN;
 	else if (game->map.map[i][j] == WALL)
 		m->color = C_BLACK;
+	else if (game->map.map[i][j] == SPRITE)
+		m->color = C_TEAL;
 	else if (game->map.map[i][j] != EMPTY)
 		m->color = C_BLUE;
 	if (j == (int)game->player.pos_x && i == (int)game->player.pos_y)
-		m->color = C_PURPLE;
+		m->color = C_RED;
 }
 
 void	minimap_cell_draw(t_game *game, t_minimap *m, int nb_pixel_per_cell)
@@ -65,27 +66,16 @@ void	minimap_cell_draw(t_game *game, t_minimap *m, int nb_pixel_per_cell)
 		{
 			dest = game->img.addr + (y * game->img.line_len
 					+ x * game->img.bpp / 8);
-			if (m->color == C_BLACK && x != m->pixel_x
-				&& x != m->pixel_x + nb_pixel_per_cell - 1
-				&& y != m->pixel_y && y != m->pixel_y + nb_pixel_per_cell - 1)
+			if (minimap_wall_and_border(m, x, y, nb_pixel_per_cell))
 				*(unsigned int *)dest = 0x8b4513;
+			else if (minimap_sprite_and_border(m, x, y, nb_pixel_per_cell))
+				*(unsigned int *)dest = C_CLEAR_BROWN;
 			else
 				*(unsigned int *)dest = m->color;
 			y++;
 		}
 		x++;
 	}
-}
-
-void	minimap_init(t_game *game, t_minimap *m)
-{
-	m->pixel_x = 10;
-	m->pixel_y = 10;
-	m->start_i = game->player.pos_y - 15;
-	m->end_i = m->start_i + 30;
-	m->start_j = game->player.pos_x - 15;
-	m->end_j = m->start_j + 30;
-	m->color = 0x000000;
 }
 
 void	minimap(t_game *game)

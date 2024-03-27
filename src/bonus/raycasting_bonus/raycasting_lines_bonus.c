@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 16:28:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/27 15:14:46 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 15:35:45 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ static void	draw_ceiling(t_game *game, t_ray *ray, int *y, int x)
 		if (*y < 0 || *y >= HEIGHT || x < 0 || x >= WIDTH)
 			break ;
 		offset = (*y * game->img.line_len + x * (game->img.bpp / 8));
-		*(unsigned int *)(game->img.addr + offset) = game->textures.ceiling_color;
+		*(unsigned int *)
+			(game->img.addr + offset) = game->textures.ceiling_color;
 		*y = *y + 1;
 	}
 }
@@ -86,7 +87,8 @@ static void	draw_floor(t_game *game, int *y, int x)
 	while (*y < HEIGHT)
 	{
 		offset = (*y * game->img.line_len + x * (game->img.bpp / 8));
-		*(unsigned int *)(game->img.addr + offset) = game->textures.floor_color;
+		*(unsigned int *)
+			(game->img.addr + offset) = game->textures.floor_color;
 		*y = *y + 1;
 	}
 }

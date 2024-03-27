@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:42:01 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/27 15:08:01 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 15:24:35 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,11 +136,11 @@ void	raycasting(t_game *game)
 		calculate_line_params(&ray);
 		find_wall_texture(game, &ray);
 		draw_texture_line(game, &ray);
-		// if (game->sprite.nb_sprites != 0)
-		// 	game->sprite.z_buffer[x] = ray.perp_wall_dist;
+		if (game->sprite.nb_sprites != 0)
+			game->sprite.z_buffer[x] = ray.perp_wall_dist;
 		x++;
 	}
-	// if (game->sprite.nb_sprites == 0)
-	// 	return ;
-	// raycasting_draw_sprite(game);
+	if (game->sprite.nb_sprites == 0)
+		return ;
+	raycasting_draw_sprite(game);
 }

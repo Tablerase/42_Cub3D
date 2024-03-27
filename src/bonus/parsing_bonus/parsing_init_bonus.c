@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:56:36 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/27 14:33:47 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 15:23:50 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	parsing_init(t_game *game)
 	game->keys.key_d = RELEASED;
 	game->keys.key_left = RELEASED;
 	game->keys.key_right = RELEASED;
+	game->keys.key_space = RELEASED;
+	game->keys.key_h = RELEASED;
 	game->map.map = NULL;
 	game->map.height = 0;
 	game->map.width = 0;
@@ -50,6 +52,8 @@ void	parsing_init_textures(t_game *game)
 	game->textures.east.path = NULL;
 	game->textures.east.img.img = NULL;
 	game->textures.east.type = EAST;
+	game->textures.door.img.img = NULL;
+	game->textures.door.type = -1;
 }
 
 void	parsing_init_test_map(t_game *game, t_map *test_map)

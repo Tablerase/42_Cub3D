@@ -6,7 +6,7 @@
 #    By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 18:08:42 by rcutte            #+#    #+#              #
-#    Updated: 2024/03/27 13:32:27 by abourgeo         ###   ########.fr        #
+#    Updated: 2024/03/27 15:19:25 by abourgeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -199,8 +199,8 @@ PARSING_BONUS = parsing_bonus/parsing_colors_bonus.c \
 		parsing_bonus/parsing_map_valid_tiles_bonus.c \
 		parsing_bonus/parsing_colors_utils_bonus.c \
 
-MINIMAP = minimap_bonus.c \
-			minimap_utils_bonus.c \
+MINIMAP = minimap_bonus/minimap_bonus.c \
+			minimap_bonus/minimap_utils_bonus.c \
 
 SPRITES = sprites_bonus/sprites_create_list_bonus.c \
 		sprites_bonus/sprites_display_sprite_bonus.c \

@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:25:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/27 13:31:51 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 15:39:21 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -375,8 +375,8 @@ typedef struct s_game
 
 // Setup
 
-bool	ft_setup_player(t_game *game);
-void	ft_setup_door_and_sprite(t_game *game);
+bool			ft_setup_player(t_game *game);
+void			ft_setup_door_and_sprite(t_game *game);
 
 // Graphics
 
@@ -392,7 +392,7 @@ void			draw_texture_line(t_game *game, t_ray *ray);
 
 	// Simple color
 
-void	find_wall_color(t_game *game, t_ray *ray);
+void			find_wall_color(t_game *game, t_ray *ray);
 
 // Pixel
 
@@ -408,19 +408,19 @@ int				get_blue(int argb);
 
 // Events
 
-void	ft_events(t_game *game);
-void	update_door(t_game *game);
-void	update_movement(t_game *game);
+void			ft_events(t_game *game);
+void			update_door(t_game *game);
+void			update_movement(t_game *game);
 
 // Movement
 
-void	rotate_left(t_game *game);
-void	rotate_right(t_game *game);
-void	move_forward(t_game *game);
-void	move_backward(t_game *game);
-void	move_left(t_game *game);
-void	move_right(t_game *game);
-void	mouse_rotations(t_game *game);
+void			rotate_left(t_game *game);
+void			rotate_right(t_game *game);
+void			move_forward(t_game *game);
+void			move_backward(t_game *game);
+void			move_left(t_game *game);
+void			move_right(t_game *game);
+void			mouse_rotations(t_game *game);
 
 // Exit
 
@@ -484,6 +484,7 @@ void			parsing_fill_submap(
 					char *buffer,
 					int i,
 					t_fds fd);
+void			parsing_found_texture(t_game *game, char c, int i, int j);
 void			parsing_found_sprite(t_game *game, int i, int j);
 void			parsing_collect_map(t_game *game, t_fds fd);
 

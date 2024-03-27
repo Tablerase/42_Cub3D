@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 08:53:41 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/27 13:42:19 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 15:35:24 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	parsing_found_player(t_game *game, char direction, int i, int j)
 {
-	// printf("%f %f\n", game->player.pos_x, game->player.pos_y);
 	if (game->player.pos_x != -1 || game->player.pos_y != -1)
 		parsing_exit_error(game, "Multiple player definition\n");
 	game->map.map[i][j] = GROUND;

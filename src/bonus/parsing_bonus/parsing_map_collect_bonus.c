@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:15:20 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/27 14:29:04 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 15:39:04 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,13 @@ void	parsing_fill_submap(t_game *game, char *buffer, int i, t_fds fd)
 	j = -1;
 	while (buffer[++j] != '\0')
 	{
-		if (buffer[j] == '0')
-			game->map.map[i][j] = GROUND;
-		else if (buffer[j] == '1')
-			game->map.map[i][j] = WALL;
-		else if (buffer[j] == '2')
-			game->map.map[i][j] = DOOR_CLOSED;
-		else if (buffer[j] == '3')
-			game->map.map[i][j] = DOOR_OPEN;
+		if (buffer[j] >= '0' && buffer[j] <= '4')
+			parsing_found_texture(game, buffer[j], i, j);
 		else if (buffer[j] == ' ')
 			game->map.map[i][j] = EMPTY;
 		else if (buffer[j] == 'N' || buffer[j] == 'S'
 			|| buffer[j] == 'E' || buffer[j] == 'W')
 			parsing_found_player(game, buffer[j], i, j);
-		else if (buffer[j] == '4')
-			parsing_found_sprite(game, i, j);
 		else
 		{
 			free(buffer);
@@ -43,6 +35,20 @@ void	parsing_fill_submap(t_game *game, char *buffer, int i, t_fds fd)
 	}
 	while (j < game->map.width)
 		game->map.map[i][j++] = EMPTY;
+}
+
+void	parsing_found_texture(t_game *game, char c, int i, int j)
+{
+	if (c == '0')
+		game->map.map[i][j] = GROUND;
+	else if (c == '1')
+		game->map.map[i][j] = WALL;
+	else if (c == '2')
+		game->map.map[i][j] = DOOR_CLOSED;
+	else if (c == '3')
+		game->map.map[i][j] = DOOR_OPEN;
+	else if (c == '4')
+		parsing_found_sprite(game, i, j);
 }
 
 void	parsing_found_sprite(t_game *game, int i, int j)
