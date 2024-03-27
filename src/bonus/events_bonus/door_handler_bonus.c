@@ -6,13 +6,13 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 12:58:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/27 13:27:33 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/27 17:03:36 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-static void	open_nearby_doors(t_game *game)
+static void	action_on_nearby_doors(t_game *game)
 {
 	int			x;
 	int			y;
@@ -31,9 +31,9 @@ static void	open_nearby_doors(t_game *game)
 		{
 			tile = game->map.map[y][x];
 			if (tile == DOOR_CLOSED)
-			{
 				game->map.map[y][x] = DOOR_OPEN;
-			}
+			else if (tile == DOOR_OPEN)
+				game->map.map[y][x] = DOOR_CLOSED;
 			y++;
 		}
 		x++;
@@ -43,9 +43,9 @@ static void	open_nearby_doors(t_game *game)
 /**
  * @brief Function to check if a door is nearby
  * @param game The game struct
- * @return true If a door is nearby
+ * @return The tile type of the door if found, EMPTY otherwise
 */
-static bool	door_nearby(t_game *game)
+static enum e_tile	door_nearby(t_game *game)
 {
 	int			x;
 	int			y;
@@ -63,24 +63,33 @@ static bool	door_nearby(t_game *game)
 			&& y >= 0)
 		{
 			tile = game->map.map[y][x];
-			if (tile == DOOR_CLOSED)
-			{
-				return (true);
-			}
+			if (tile == DOOR_CLOSED || tile == DOOR_OPEN)
+				return (tile);
 			y++;
 		}
 		x++;
 	}
-	return (false);
+	return (EMPTY);
 }
 
 void	update_door(t_game *game)
 {
-	if (door_nearby(game) == true)
+	static int		frame;
+	enum e_tile		tile;
+
+	tile = game->map.map[(int)game->player.pos_y][(int)game->player.pos_x];
+	if (frame == 10)
 	{
-		if (game->keys.key_space == PRESSED)
+		if (door_nearby(game) != EMPTY)
 		{
-			open_nearby_doors(game);
+			if (game->keys.key_space == PRESSED
+				&& tile != DOOR_CLOSED && tile != DOOR_OPEN)
+			{
+				action_on_nearby_doors(game);
+			}
 		}
+		frame = 0;
 	}
+	else
+		frame++;
 }
