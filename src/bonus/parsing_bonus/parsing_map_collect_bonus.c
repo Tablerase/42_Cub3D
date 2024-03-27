@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:15:20 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/27 13:34:55 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 14:29:04 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	parsing_fill_submap(t_game *game, char *buffer, int i, t_fds fd)
 			game->map.map[i][j] = DOOR_CLOSED;
 		else if (buffer[j] == '3')
 			game->map.map[i][j] = DOOR_OPEN;
-		else if (buffer[j] == '4')
-			game->map.map[i][j] = SPRITE;
 		else if (buffer[j] == ' ')
 			game->map.map[i][j] = EMPTY;
 		else if (buffer[j] == 'N' || buffer[j] == 'S'

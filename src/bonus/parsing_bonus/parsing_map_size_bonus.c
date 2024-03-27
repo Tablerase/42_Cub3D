@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 21:09:33 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/26 12:00:05 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 13:37:50 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void	parsing_width_height_map(t_game *game, t_fds fd)
 	char	*buffer;
 	int		len_buffer;
 
+	game->map.width = 0;
 	buffer = right_trim_gnl(game, fd);
 	while (buffer != NULL && buffer[0] == '\0')
 	{

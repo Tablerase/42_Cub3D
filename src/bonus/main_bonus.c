@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:13:02 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/27 13:32:37 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 15:15:30 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ int	main(int argc, char **argv)
 	parsing(&game, argv[1]);
 	ft_setup_img(&game);
 	ft_setup_player(&game);
-	ft_setup_window(&game);
 	ft_setup_door_and_sprite(&game);
+	ft_setup_window(&game);
 	ft_events(&game);
 	mlx_loop_hook(game.mlx.mlx, ft_gameplay, &game);
 	mlx_loop(game.mlx.mlx);

@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:17:59 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/26 14:31:51 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 13:47:25 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ void	parsing_map_closed_and_single(t_game *game)
 		{
 			if (is_edge(game->map, i, j) == 1
 				&& game->map.map[i][j] == GROUND)
-				parsing_exit_error(game, "Map not closed\n");
-			if ((game->map.map[i][j] == GROUND || game->map.map[i][j] == SPRITE)
-				&& unclosed_ground(game->map, i, j) == 1)
-				parsing_exit_error(game, "Map not closed\n");
+				parsing_exit_error(game, "Map not closed1\n");
+			// if ((game->map.map[i][j] == GROUND)
+			// 	&& unclosed_ground(game->map, i, j) == 1)
+			// 	parsing_exit_error(game, "Map not closed2\n");
 			j++;
 		}
 		i++;
