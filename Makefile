@@ -6,7 +6,7 @@
 #    By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 18:08:42 by rcutte            #+#    #+#              #
-#    Updated: 2024/03/27 12:36:00 by rcutte           ###   ########.fr        #
+#    Updated: 2024/03/27 13:01:40 by rcutte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -182,6 +182,7 @@ GRAPHICS_BONUS = graphics_bonus/colors_bonus.c \
 				graphics_bonus/graphics_shapes_lines_bonus.c \
 
 EVENTS_BONUS = events_bonus/event_handlers_bonus.c \
+				events_bonus/door_handler_bonus.c \
 
 PARSING_BONUS = parsing_bonus/parsing_colors_bonus.c \
 		parsing_bonus/parsing_map_bonus.c \

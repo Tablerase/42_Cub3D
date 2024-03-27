@@ -6,24 +6,11 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 17:05:05 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/26 13:45:59 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/27 12:59:48 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3d_bonus.h"
-
-// /**
-//  * @brief Function to handle the key events
-//  * @param keycode The keycode
-//  * @param game The game struct
-//  * @note XK_Escape - The escape key - Exit the program
-// */
-// int	key_hook(int keycode, t_game *game)
-// {
-// 	if (keycode == XK_Escape)
-// 		ft_exit(game);
-// 	return (0);
-// }
 
 void	init_keys(t_game *game)
 {
@@ -33,6 +20,8 @@ void	init_keys(t_game *game)
 	game->keys.key_d = 0;
 	game->keys.key_left = 0;
 	game->keys.key_right = 0;
+	game->keys.key_space = 0;
+	game->keys.key_h = 0;
 }
 
 int	on_click(int keycode, t_game *game)
@@ -49,6 +38,10 @@ int	on_click(int keycode, t_game *game)
 		game->keys.key_left = PRESSED;
 	if (keycode == XK_Right)
 		game->keys.key_right = PRESSED;
+	if (keycode == XK_space)
+		game->keys.key_space = PRESSED;
+	if (keycode == XK_h)
+		game->keys.key_h = PRESSED;
 	if (keycode == XK_Escape)
 		ft_exit(game);
 	return (0);
@@ -68,6 +61,10 @@ int	on_release(int keycode, t_game *game)
 		game->keys.key_left = RELEASED;
 	if (keycode == XK_Right)
 		game->keys.key_right = RELEASED;
+	if (keycode == XK_space)
+		game->keys.key_space = RELEASED;
+	if (keycode == XK_h)
+		game->keys.key_h = RELEASED;
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:13:02 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/27 12:20:31 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/27 12:57:15 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	ft_gameplay(t_game *game)
 	raycasting(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.win, game->img.img, 0, 0);
 	update_movement(game);
+	update_door(game);
 	minimap(game);
 	return (0);
 }

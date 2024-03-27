@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 17:49:34 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/27 12:42:17 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/27 12:59:29 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,11 @@ void	find_tile_side_x(t_game *game, t_ray *ray)
 	ray->wall_x -= floor(ray->wall_x);
 }
 
+/**
+ * @brief Check if the tile is a door and set the texture to the door texture
+ * @param game The game struct
+ * @param ray The ray struct
+*/
 void	check_door_texture(t_game *game, t_ray *ray)
 {
 	if (ray->tile == DOOR_CLOSED)

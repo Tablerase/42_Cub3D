@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:25:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/27 12:34:50 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/27 13:01:00 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,8 @@ typedef struct s_keys
 	enum e_key	key_d;
 	enum e_key	key_left;
 	enum e_key	key_right;
+	enum e_key	key_space;
+	enum e_key	key_h;
 }	t_keys;
 
 /**
@@ -347,17 +349,6 @@ void	draw_texture_line(t_game *game, t_ray *ray);
 
 void	find_wall_color(t_game *game, t_ray *ray);
 
-// Movement
-
-void	update_movement(t_game *game);
-void	rotate_left(t_game *game);
-void	rotate_right(t_game *game);
-void	move_forward(t_game *game);
-void	move_backward(t_game *game);
-void	move_left(t_game *game);
-void	move_right(t_game *game);
-void	mouse_rotations(t_game *game);
-
 // Pixel
 
 void	pixel_put(t_img *img, int x, int y, int color);
@@ -373,6 +364,18 @@ int		get_blue(int argb);
 // Events
 
 void	ft_events(t_game *game);
+void	update_door(t_game *game);
+void	update_movement(t_game *game);
+
+// Movement
+
+void	rotate_left(t_game *game);
+void	rotate_right(t_game *game);
+void	move_forward(t_game *game);
+void	move_backward(t_game *game);
+void	move_left(t_game *game);
+void	move_right(t_game *game);
+void	mouse_rotations(t_game *game);
 
 // Exit
 
