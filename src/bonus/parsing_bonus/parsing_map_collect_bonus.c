@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map_collect_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:15:20 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/26 12:00:05 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 11:37:27 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ void	parsing_fill_submap(t_game *game, char *buffer, int i, t_fds fd)
 			game->map.map[i][j] = GROUND;
 		else if (buffer[j] == '1')
 			game->map.map[i][j] = WALL;
+		else if (buffer[j] == '2')
+			game->map.map[i][j] = DOOR_CLOSED;
+		else if (buffer[j] == '3')
+			game->map.map[i][j] = DOOR_OPEN;
+		else if (buffer[j] == '4')
+			game->map.map[i][j] = SPRITE;
 		else if (buffer[j] == ' ')
 			game->map.map[i][j] = EMPTY;
 		else if (buffer[j] == 'N' || buffer[j] == 'S'

@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:25:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/26 15:11:21 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/27 11:37:41 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ enum e_key
  * @param WALL The wall tile
  * @param DOOR_CLOSED The closed door tile
  * @param DOOR_OPEN The open door tile
+ * @param SPRITE The sprite tile
  * @param EMPTY The empty tile
 */
 enum e_tile
@@ -80,6 +81,7 @@ enum e_tile
 	WALL,
 	DOOR_CLOSED,
 	DOOR_OPEN,
+	SPRITE,
 	EMPTY
 };
 
