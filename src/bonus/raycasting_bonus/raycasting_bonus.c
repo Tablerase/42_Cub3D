@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:42:01 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/26 21:45:39 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:16:12 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,41 +115,6 @@ static void	dda_algorithm(t_game *game, t_ray *ray)
 	}
 }
 
-void	sprite_exchange(t_game *game, int i, int j)
-{
-	double	temp_dist;
-	int		temp_order;
-
-	temp_dist = game->sprite.sprite_distance[i];
-	temp_order = game->sprite.sprite_order[i];
-	game->sprite.sprite_distance[i] = game->sprite.sprite_distance[j];
-	game->sprite.sprite_order[i] = game->sprite.sprite_order[j];
-	game->sprite.sprite_distance[j] = temp_dist;
-	game->sprite.sprite_order[j] = temp_order;
-}
-
-void	sort_sprites(t_game *game)
-{
-	int	i;
-	int	j;
-	int	min;
-
-	i = 0;
-	while (i < game->sprite.nb_sprites)
-	{
-		j = i + 1;
-		min = j;
-		while (j < game->sprite.nb_sprites)
-		{
-			if (game->sprite.sprite_distance[j] < game->sprite.sprite_distance[min])
-				min = j;
-			j++;
-		}
-		sprite_exchange(game, i, min);
-		i++;
-	}
-}
-
 /**
  * @brief Raycasting function
  * @param game The game struct
@@ -171,39 +136,10 @@ void	raycasting(t_game *game)
 		find_wall_texture(game, &ray);
 		draw_texture_line(game, &ray);
 		if (game->sprite.nb_sprites != 0)
-		{
 			game->sprite.z_buffer[x] = ray.perp_wall_dist;
-		}
 		x++;
 	}
-	t_draw_sprite draw;
-	static float		time;
-
-	time += 0.2;
-	if (time > 20.0)
-		time = 0;
 	if (game->sprite.nb_sprites == 0)
 		return ;
-	for (int i = 0; i < game->sprite.nb_sprites; i++)
-	{
-		game->sprite.sprite_order[i] = i;
-		game->sprite.sprite_distance[i] = pow(game->player.pos_x - game->sprite.sprite_pos[i].x, 2)
-			+ pow(game->player.pos_y - game->sprite.sprite_pos[i].y, 2);
-	}
-	sort_sprites(game);
-
-	for (int i = 0; i < game->sprite.nb_sprites; i++)
-	{
-		sprites_calculate(game, i);
-		sprites_draw_size(game, &draw);
-
-		for (int stripe = draw.start_x; stripe < draw.end_x; stripe++)
-		{
-			game->sprite.tex_x = (int)(256 * (stripe - (-draw.stripe_width / 2 + game->sprite.sprite_screen_x)) * game->sprite.img->on_screen->img.width / draw.stripe_width) / 256;
-			if (game->sprite.transform_y > 0 && stripe > 0 && stripe < WIDTH && game->sprite.transform_y < game->sprite.z_buffer[stripe])
-			{
-				sprites_draw_stripe(game, stripe, draw, time);
-			}
-		}
-	}
+	raycasting_draw_sprite(game);
 }

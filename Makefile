@@ -6,7 +6,7 @@
 #    By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 18:08:42 by rcutte            #+#    #+#              #
-#    Updated: 2024/03/26 21:33:17 by abourgeo         ###   ########.fr        #
+#    Updated: 2024/03/27 13:00:31 by abourgeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -199,10 +199,12 @@ PARSING_BONUS = parsing_bonus/parsing_colors_bonus.c \
 		parsing_bonus/parsing_colors_utils_bonus.c \
 
 MINIMAP = minimap_bonus.c \
+			minimap_utils_bonus.c \
 
 SPRITES = sprites_bonus/sprites_create_list_bonus.c \
 		sprites_bonus/sprites_display_sprite_bonus.c \
 		sprites_bonus/sprites_utils_bonus.c \
+		sprites_bonus/sprites_calculation_bonus.c \
 
 OBJ_BONUS = $(addprefix $(SRC_BONUS_PATH)/,$(SRC_BONUS:.c=.o))
 

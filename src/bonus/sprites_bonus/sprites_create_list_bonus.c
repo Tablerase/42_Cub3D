@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 21:21:36 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/26 21:22:02 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:44:21 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 
 void	sprite_init_tab(char **tab)
 {
-	tab[0] = "assets/textures/dino/dino1.xpm";
-	tab[1] = "assets/textures/dino/dino2.xpm";
-	tab[2] = "assets/textures/dino/dino3.xpm";
-	tab[3] = "assets/textures/dino/dino4.xpm";
-	tab[4] = "assets/textures/dino/dino5.xpm";
-	tab[5] = "assets/textures/dino/dino6.xpm";
-	tab[6] = "assets/textures/dino/dino7.xpm";
-	tab[7] = "assets/textures/dino/dino8.xpm";
-	tab[8] = "assets/textures/dino/dino9.xpm";
-	tab[9] = NULL;
+	tab[0] = "assets/textures/fire/white1.xpm";
+	tab[1] = "assets/textures/fire/white2.xpm";
+	tab[2] = "assets/textures/fire/white3.xpm";
+	tab[3] = "assets/textures/fire/white4.xpm";
+	tab[4] = "assets/textures/fire/white5.xpm";
+	tab[5] = "assets/textures/fire/white6.xpm";
+	tab[6] = "assets/textures/fire/white7.xpm";
+	tab[7] = "assets/textures/fire/white8.xpm";
+	tab[8] = NULL;
 }
 
 t_sprite_list	*sprite_new_node(void *mlx_ptr, char *path)
@@ -37,15 +36,15 @@ t_sprite_list	*sprite_new_node(void *mlx_ptr, char *path)
 	new_node->img.type = TEX_SPRITE;
 	new_node->img.path = path;
 	new_node->img.img.img = mlx_xpm_file_to_image(mlx_ptr, path,
-		&new_node->img.width, &new_node->img.height);
+			&new_node->img.width, &new_node->img.height);
 	if (new_node->img.img.img == NULL)
 	{
 		free(new_node);
 		return (NULL);
 	}
 	new_node->img.img.addr = mlx_get_data_addr(new_node->img.img.img,
-		&new_node->img.img.bpp, &new_node->img.img.line_len,
-		&new_node->img.img.endian);
+			&new_node->img.img.bpp, &new_node->img.img.line_len,
+			&new_node->img.img.endian);
 	if (new_node->img.img.addr == NULL)
 	{
 		mlx_destroy_image(mlx_ptr, new_node->img.img.img);
@@ -57,7 +56,7 @@ t_sprite_list	*sprite_new_node(void *mlx_ptr, char *path)
 
 void	sprite_create_list(t_game *game, char **tab)
 {
-	int	i;
+	int				i;
 	t_sprite_list	*tmp;
 
 	i = 1;
@@ -78,7 +77,7 @@ void	sprite_create_list(t_game *game, char **tab)
 
 void	parsing_allocate_sprite(t_game *game)
 {
-	char	*tab[10];
+	char	*tab[9];
 
 	sprite_init_tab(tab);
 	game->sprite.img = sprite_new_node(game->mlx.mlx, tab[0]);

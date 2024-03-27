@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:25:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/26 21:45:19 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 13:01:24 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,7 +247,7 @@ typedef struct s_sprite_list
 	struct s_sprite_list	*on_screen;
 }	t_sprite_list;
 
-typedef	struct s_sprite_pos
+typedef struct s_sprite_pos
 {
 	double	x;
 	double	y;
@@ -417,14 +417,26 @@ int				ft_exit(t_game *game);
 
 // Line
 
-void			draw_horizontal_line(t_img *img, t_point p1, t_point p2, int color);
-void			draw_vertical_line(t_img *img, t_point p1, t_point p2, int color);
+void			draw_horizontal_line(
+					t_img *img,
+					t_point p1,
+					t_point p2,
+					int color);
+void			draw_vertical_line(
+					t_img *img,
+					t_point p1,
+					t_point p2,
+					int color);
 void			line(t_img *img, t_point p1, t_point p2, int color);
 
 // Rectangle
 
 void			rectangle(t_img *img, t_point start, t_point end, int color);
-void			fill_rectangle(t_img *img, t_point start, t_point end, int color);
+void			fill_rectangle(
+					t_img *img,
+					t_point start,
+					t_point end,
+					int color);
 
 /* ################################ PARSING ################################ */
 
@@ -436,7 +448,10 @@ void			parse_map(t_game *game, t_fds fd);
 
 // parsing_map_utils_bonus.c
 
-void			parsing_find_start_index(t_game *game, int *i_start, int *j_start);
+void			parsing_find_start_index(
+					t_game *game,
+					int *i_start,
+					int *j_start);
 void			parsing_fill_test_map(t_game *game, t_map *test_map);
 void			parsing_check_nb_island(t_game *game, t_map *test_map);
 void			parsing_fill_first_island(t_map *map, int i, int j);
@@ -450,7 +465,12 @@ void			parsing_count_player_map(t_game *game);
 
 // parsing_map_collect_bonus.c
 
-void			parsing_fill_submap(t_game *game, char *buffer, int i, t_fds fd);
+void			parsing_fill_submap(
+					t_game *game,
+					char *buffer,
+					int i,
+					t_fds fd);
+void			parsing_found_sprite(t_game *game, int i, int j);
 void			parsing_collect_map(t_game *game, t_fds fd);
 
 // parsing_map_size_bonus.c
@@ -458,12 +478,19 @@ void			parsing_collect_map(t_game *game, t_fds fd);
 int				is_char_to_trim(char c, char const *to_trim);
 char			*right_strtrim(char *src, char *to_trim);
 char			*right_trim_gnl(t_game *game, t_fds fd);
-void			parsing_check_if_end_of_map(t_game *game, t_fds fd, char *prev_buffer);
+void			parsing_check_if_end_of_map(
+					t_game *game,
+					t_fds fd,
+					char *prev_buffer);
 void			parsing_width_height_map(t_game *game, t_fds fd);
 
 // parsing_init_player_direction_bonus.c
 
-void			parsing_found_player(t_game *game, char direction, int i, int j);
+void			parsing_found_player(
+					t_game *game,
+					char direction,
+					int i,
+					int j);
 void			parsing_player_north_direction(t_game *game);
 void			parsing_player_south_direction(t_game *game);
 void			parsing_player_west_direction(t_game *game);
@@ -471,7 +498,10 @@ void			parsing_player_east_direction(t_game *game);
 
 // parsing_colors_bonus.c
 
-void			parsing_set_color(t_game *game, char *identifier, char *color_rgb,
+void			parsing_set_color(
+					t_game *game,
+					char *identifier,
+					char *color_rgb,
 					t_fds fd);
 void			parsing_char_color(t_game *game, char *color_rgb, t_fds fd);
 void			parsing_color_format(t_game *game, char *color_rgb, t_fds fd);
@@ -502,10 +532,16 @@ void			parsing_free_sprite(t_game *game);
 
 // parsing_textures_bonus.c
 
-void			parsing_set_texture(t_game *game, char **buffer, char *identifier,
+void			parsing_set_texture(
+					t_game *game,
+					char **buffer,
+					char *identifier,
 					t_fds fd);
 void			parsing_textures(t_game *game, t_fds fd);
-void			allocate_data_texture(t_game *game, t_texture *face, char *texture_path,
+void			allocate_data_texture(
+					t_game *game,
+					t_texture *face,
+					char *texture_path,
 					t_fds fd);
 void			parsing_free_error_textures(t_game *game, t_fds fd,
 					char *buffer, int error_code);
@@ -513,9 +549,9 @@ void			parsing_free_error_textures(t_game *game, t_fds fd,
 // parsing_utils_bonus.c
 
 char			*trimed_gnl(t_game *game, t_fds fd, const char *to_trim);
-char			*parsing_add_count(t_count_id *nb_identifier, char *identifier);
+char			*parsing_add_count(t_count_id *nb_identifier, char *id);
 int				count_id(t_count_id nb_identifier);
-char			*parsing_found_identifier(char *buffer, t_count_id *nb_textures);
+char			*parsing_found_identifier(char *buffer, t_count_id *nb_tex);
 int				ft_strcmp(char *s1, char *s2);
 
 // parsing_init_bonus.c
@@ -530,9 +566,39 @@ void			parsing_init_sprite(t_game *game);
 void			parsing_file_name_and_format(t_game *game, char *filename);
 void			parsing(t_game *game, char *filename);
 
+// minimap_utils_bonus.c
+
+bool			minimap_wall_and_border(
+					t_minimap *m,
+					int x,
+					int y,
+					int nb_pixel_per_cell);
+bool			minimap_sprite_and_border(
+					t_minimap *m,
+					int x,
+					int y,
+					int nb_pixel_per_cell);
+void			minimap_init(t_game *game, t_minimap *m);
+
 // minimap_bonus.c
 
+int				transparency(int alpha, int color, int background_color);
+void			minimap_cell_color(t_game *game, t_minimap *m, int i, int j);
+void			minimap_cell_draw(
+					t_game *game,
+					t_minimap *m,
+					int nb_pixel_per_cell);
 void			minimap(t_game *game);
+
+// sprites_calculation_bonus.c
+
+void			sprites_calculate(t_game *game, int i);
+double			distance_sprite_to_player(t_game *game, int i);
+void			sprites_draw_size(t_game *game, t_draw_sprite *draw);
+int				sprites_tex_x_size(
+					t_game *game,
+					int stripe,
+					t_draw_sprite draw);
 
 // sprites_create_list_bonus.c
 
@@ -541,15 +607,20 @@ t_sprite_list	*sprite_new_node(void *mlx_ptr, char *path);
 void			sprite_create_list(t_game *game, char **tab);
 void			parsing_allocate_sprite(t_game *game);
 
-// sprites_utils_bonus.c
-
-void			parsing_free_sprite(t_game *game);
-void			sprites_free_images(t_game *game);
-void			sprites_draw_size(t_game *game, t_draw_sprite *draw);
-
 // sprites_display_stripe_bonus.c
 
-void			sprites_calculate(t_game *game, int i);
-void			sprites_draw_stripe(t_game *game, int stripe, t_draw_sprite draw, float time);
+void			sprites_draw_stripe(
+					t_game *game,
+					int stripe,
+					t_draw_sprite draw);
+void			raycasting_draw_sprite(t_game *game);
+
+// sprites_utils_bonus.c
+
+void			fill_sprite_order_arrays(t_game *game);
+void			sprite_exchange(t_game *game, int i, int j);
+void			sort_sprites(t_game *game);
+void			parsing_free_sprite(t_game *game);
+void			sprites_free_images(t_game *game);
 
 #endif

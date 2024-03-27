@@ -6,11 +6,60 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 21:26:34 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/26 21:42:09 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:16:16 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3d_bonus.h"
+
+void	fill_sprite_order_arrays(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < game->sprite.nb_sprites)
+	{
+		game->sprite.sprite_order[i] = i;
+		game->sprite.sprite_distance[i] = distance_sprite_to_player(game, i);
+		i++;
+	}
+}
+
+void	sprite_exchange(t_game *game, int i, int j)
+{
+	double	temp_dist;
+	int		temp_order;
+
+	temp_dist = game->sprite.sprite_distance[i];
+	temp_order = game->sprite.sprite_order[i];
+	game->sprite.sprite_distance[i] = game->sprite.sprite_distance[j];
+	game->sprite.sprite_order[i] = game->sprite.sprite_order[j];
+	game->sprite.sprite_distance[j] = temp_dist;
+	game->sprite.sprite_order[j] = temp_order;
+}
+
+void	sort_sprites(t_game *game)
+{
+	int	i;
+	int	j;
+	int	min;
+
+	i = 0;
+	while (i < game->sprite.nb_sprites)
+	{
+		j = i;
+		min = j;
+		while (j < game->sprite.nb_sprites)
+		{
+			if (game->sprite.sprite_distance[j]
+				> game->sprite.sprite_distance[min])
+				min = j;
+			j++;
+		}
+		sprite_exchange(game, i, min);
+		i++;
+	}
+}
 
 void	parsing_free_sprite(t_game *game)
 {
@@ -46,22 +95,4 @@ void	sprites_free_images(t_game *game)
 			free(tmp);
 		}
 	}
-}
-
-void	sprites_draw_size(t_game *game, t_draw_sprite *draw)
-{
-	draw->start_y = -game->sprite.sprite_height / 2 + HEIGHT / 2;
-	if (draw->start_y < 0)
-		draw->start_y = 0;
-	draw->end_y = game->sprite.sprite_height / 2 + HEIGHT / 2;
-	if (draw->end_y >= HEIGHT)
-		draw->end_y = HEIGHT - 1;
-	
-	draw->stripe_width = abs((int)(HEIGHT / game->sprite.transform_y));
-	draw->start_x = -draw->stripe_width / 2 + game->sprite.sprite_screen_x;
-	if(draw->start_x < 0)
-		draw->start_x = 0;
-	draw->end_x = draw->stripe_width / 2 + game->sprite.sprite_screen_x;
-	if(draw->end_x >= WIDTH)
-		draw->end_x = WIDTH - 1;
 }

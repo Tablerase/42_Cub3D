@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:56:36 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/26 17:17:05 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 10:09:57 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,4 @@ void	parsing_init_sprite(t_game *game)
 	game->sprite.sprite_order = NULL;
 	game->sprite.sprite_distance = NULL;
 	game->sprite.sprite_pos = NULL;
-	game->sprite.sprite_pos = malloc((game->sprite.nb_sprites + 1)
-		* sizeof(t_sprite_pos));
-	if (game->sprite.sprite_pos == NULL)
-		parsing_exit_error(game, "Allocation failed\n");
-	ft_bzero(game->sprite.sprite_pos,
-		sizeof(game->sprite.sprite_pos));
 }

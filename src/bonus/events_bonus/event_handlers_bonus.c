@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 17:05:05 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/26 16:39:30 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 10:59:47 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void	ft_events(t_game *game)
 {
 	mlx_hook(game->mlx.win, KeyPress, KeyPressMask, &on_click, game);
 	mlx_hook(game->mlx.win, KeyRelease, KeyReleaseMask, &on_release, game);
-	mlx_hook(game->mlx.win, DestroyNotify, NoEventMask, &parsing_clean_end, game);
+	mlx_hook(game->mlx.win, DestroyNotify, NoEventMask, &parsing_clean_end,
+		game);
 	mlx_hook(game->mlx.win, MotionNotify, PointerMotionMask, mouse_pos, game);
 }
