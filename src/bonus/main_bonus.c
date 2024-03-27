@@ -3,40 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:13:02 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/27 15:15:30 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:42:00 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
-
-// void	put_sprite(t_game *game)
-// {
-// 	char	*dest_sprite;
-// 	char	*dest;
-// 	int		i;
-// 	int		j;
-
-// 	i = 0;
-// 	while (i < game->sprite.img->on_screen->img.height)
-// 	{
-// 		j = 0;
-// 		while (j < game->sprite.img->on_screen->img.width)
-// 		{
-// 			dest_sprite = game->sprite.img->on_screen->img.img.addr
-// 				+ (j * game->sprite.img->on_screen->img.img.line_len
-// 					+ i * (game->sprite.img->on_screen->img.img.bpp / 8));
-// 			dest = game->img.addr + (j * game->img.line_len
-// 					+ (i + WIDTH - 128) * (game->img.bpp / 8));
-// 			if (*(unsigned int *)dest_sprite != 0x00FF00)
-// 				*(unsigned int *)dest = *(unsigned int *)dest_sprite;
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
 
 /**
  * @brief Function to handle the game play
@@ -46,20 +20,12 @@
 */
 int	ft_gameplay(t_game *game)
 {
-	static int	time;
-
-	time++;
 	raycasting(game);
-	if (time > 7)
-	{
-		time = 0;
-		game->sprite.img->on_screen->is_on_screen = false;
-		game->sprite.img->on_screen = game->sprite.img->on_screen->next;
-		game->sprite.img->on_screen->is_on_screen = true;
-	}
+	change_image_sprite(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.win, game->img.img, 0, 0);
 	update_movement(game);
 	update_door(game);
+	user_help(game);
 	minimap(game);
 	return (0);
 }

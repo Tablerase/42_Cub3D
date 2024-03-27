@@ -6,7 +6,7 @@
 /*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 12:58:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/27 17:03:36 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/27 18:20:04 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	update_door(t_game *game)
 	enum e_tile		tile;
 
 	tile = game->map.map[(int)game->player.pos_y][(int)game->player.pos_x];
-	if (frame == 10)
+	if (frame >= 8)
 	{
 		if (door_nearby(game) != EMPTY)
 		{

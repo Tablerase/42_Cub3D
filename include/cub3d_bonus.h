@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:25:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/27 16:48:50 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:29:39 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -411,6 +411,7 @@ int				get_blue(int argb);
 void			ft_events(t_game *game);
 void			update_door(t_game *game);
 void			update_movement(t_game *game);
+void			user_help(t_game *game);
 
 // Movement
 
@@ -581,6 +582,8 @@ void			parsing_init_sprite(t_game *game);
 void			parsing_file_name_and_format(t_game *game, char *filename);
 void			parsing(t_game *game, char *filename);
 
+/* ############################### Minimap ################################## */
+
 // minimap_utils_bonus.c
 
 bool			minimap_wall_and_border(
@@ -609,6 +612,12 @@ void			minimap_cell_draw(
 					t_minimap *m,
 					int nb_pixel_per_cell);
 void			minimap(t_game *game);
+
+/* ############################### SPRITES ################################## */
+
+// sprites_times_bonus.c
+
+void			change_image_sprite(t_game *game);
 
 // sprites_calculation_bonus.c
 

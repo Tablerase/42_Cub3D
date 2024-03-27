@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   event_handlers_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 17:05:05 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/27 13:33:01 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:09:52 by rcutte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3d_bonus.h"
 
-void	init_keys(t_game *game)
-{
-	game->keys.key_a = 0;
-	game->keys.key_w = 0;
-	game->keys.key_s = 0;
-	game->keys.key_d = 0;
-	game->keys.key_left = 0;
-	game->keys.key_right = 0;
-	game->keys.key_space = 0;
-	game->keys.key_h = 0;
-}
+// void	init_keys(t_game *game)
+// {
+// 	game->keys.key_a = 0;
+// 	game->keys.key_w = 0;
+// 	game->keys.key_s = 0;
+// 	game->keys.key_d = 0;
+// 	game->keys.key_left = 0;
+// 	game->keys.key_right = 0;
+// 	game->keys.key_space = 0;
+// 	game->keys.key_h = 0;
+// }
 
 int	on_click(int keycode, t_game *game)
 {

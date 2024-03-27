@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+         #
+#    By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/08 18:08:42 by rcutte            #+#    #+#              #
-#    Updated: 2024/03/27 15:19:25 by abourgeo         ###   ########.fr        #
+#    Updated: 2024/03/27 17:30:56 by rcutte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -184,6 +184,7 @@ GRAPHICS_BONUS = graphics_bonus/colors_bonus.c \
 
 EVENTS_BONUS = events_bonus/event_handlers_bonus.c \
 				events_bonus/door_handler_bonus.c \
+				events_bonus/user_helper_bonus.c \
 
 PARSING_BONUS = parsing_bonus/parsing_colors_bonus.c \
 		parsing_bonus/parsing_map_bonus.c \
@@ -206,6 +207,7 @@ SPRITES = sprites_bonus/sprites_create_list_bonus.c \
 		sprites_bonus/sprites_display_sprite_bonus.c \
 		sprites_bonus/sprites_utils_bonus.c \
 		sprites_bonus/sprites_calculation_bonus.c \
+		sprites_bonus/sprites_times_bonus.c \
 
 OBJ_BONUS = $(addprefix $(SRC_BONUS_PATH)/,$(SRC_BONUS:.c=.o))
 
@@ -271,7 +273,7 @@ ARGS = ./assets/maps/mandatory/small_stone.cub
 exec: all exec_msg
 	@./$(NAME) $(ARGS)
 
-ARGS_BONUS = ./assets/maps/bonus/small_stone_bonus.cub
+ARGS_BONUS = ./assets/maps/bonus/japan_style_bonus.cub
 
 exec_bonus: bonus exec_msg
 	@./$(NAME_BONUS) $(ARGS_BONUS)
