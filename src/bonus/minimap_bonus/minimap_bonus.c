@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcutte <rcutte@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 08:58:28 by abourgeo          #+#    #+#             */
-/*   Updated: 2024/03/27 16:36:20 by rcutte           ###   ########.fr       */
+/*   Updated: 2024/03/27 17:00:15 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	minimap_cell_color(t_game *game, t_minimap *m, int i, int j)
 	else if (game->map.map[i][j] == DOOR_CLOSED)
 		m->color = C_RED;
 	else if (game->map.map[i][j] == DOOR_OPEN)
-		m->color = C_WHITE;
+		m->color = transparency(127, C_WHITE, C_CLEAR_BROWN);
 	else if (game->map.map[i][j] == GROUND)
 		m->color = C_CLEAR_BROWN;
 	else if (game->map.map[i][j] == WALL)
@@ -70,6 +70,8 @@ void	minimap_cell_draw(t_game *game, t_minimap *m, int nb_pixel_per_cell)
 			if (minimap_wall_and_border(m, x, y, nb_pixel_per_cell))
 				*(unsigned int *)dest = 0x8b4513;
 			else if (minimap_sprite_and_border(m, x, y, nb_pixel_per_cell))
+				*(unsigned int *)dest = C_CLEAR_BROWN;
+			else if (minimap_door_and_border(m, x, y, nb_pixel_per_cell))
 				*(unsigned int *)dest = C_CLEAR_BROWN;
 			else
 				*(unsigned int *)dest = m->color;

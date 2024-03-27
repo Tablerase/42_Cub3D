@@ -6,7 +6,7 @@
 /*   By: abourgeo <abourgeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:25:16 by rcutte            #+#    #+#             */
-/*   Updated: 2024/03/27 15:39:21 by abourgeo         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:48:50 by abourgeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -589,6 +589,11 @@ bool			minimap_wall_and_border(
 					int y,
 					int nb_pixel_per_cell);
 bool			minimap_sprite_and_border(
+					t_minimap *m,
+					int x,
+					int y,
+					int nb_pixel_per_cell);
+bool			minimap_door_and_border(
 					t_minimap *m,
 					int x,
 					int y,
