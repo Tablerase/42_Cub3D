@@ -61,7 +61,7 @@ This project is inspired by the world-famous eponymous game, which was the first
 
 ```bash
 # Clone the repository
-git clone repo_url cub3d
+git clone git@github.com:Tablerase/42_Cub3D.git cub3d
 cd cub3d
 ```
 
