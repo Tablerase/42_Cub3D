@@ -55,7 +55,7 @@ This project is inspired by the world-famous eponymous game, which was the first
 
 ## 📚 Resources
 
-- [📓 **This Repo Detailled Documentation**](../README.md)
+- [📓 **This Repo Detailled Documentation**](https://github.com/Tablerase/42_Projects/tree/main/Projects/Cube3D)
 
 ## 🛠️ Installation
 
