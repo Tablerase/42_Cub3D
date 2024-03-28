@@ -9,7 +9,7 @@
   <img src="https://github.com/Tablerase/42_Projects/raw/main/Projects/Cube3D/Media/cub3d-stone.gif" width="50%" style="margin-left: 10px;">
 </div>
 
-<img src="https://img.shields.io/badge/42-2024-000000?style=for-the-badge&logo=42" alt="42 2024">
+<img src="https://img.shields.io/badge/Version-2024-000000?style=for-the-badge&logo=42" alt="42 2024">
 <img src="https://img.shields.io/badge/Grade-123-brightgreen?style=for-the-badge" alt="Grade 123">
 
 </div>
